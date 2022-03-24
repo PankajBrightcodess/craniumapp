@@ -95,7 +95,7 @@ $name = "Customer of $custname - $orderno";
                                         <input type="hidden" name="merchant_total" id="merchant_total" value="<?php echo $total; ?>"/>
                                         <input type="hidden" name="merchant_amount" id="merchant_amount" value="<?php echo $amount; ?>"/>
                                         <input type="hidden" name="order_id" id="order_id" value="<?php echo $merchant_order_id; ?>">
-                                        <input  id="submit-pay" type="button" onclick="razorpaySubmit(this);" value="PAY NOW" class="btn btn-sm btn-warning" />
+                                        <input  id="submit-pay" type="button" onclick="razorpaySubmits(this);" value="PAY NOW" class="btn btn-sm btn-warning" />
                                         <!-- <a href="payment_barcode.php" class="btn btn-sm btn-success">PAY NOW</a> -->
                                         </form>
                                     </div>
@@ -167,10 +167,10 @@ function random_number($l){
     };
     var razorpay_submit_btn, razorpay_instance;
 
-    function razorpaySubmit(el){
+    function razorpaySubmits(el){
         debugger;
         if(typeof Razorpay == 'undefined'){
-        setTimeout(razorpaySubmit, 200);
+        setTimeout(razorpaySubmits, 200);
         if(!razorpay_submit_btn && el){
             razorpay_submit_btn = el;
             el.disabled = true;

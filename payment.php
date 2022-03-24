@@ -3,7 +3,6 @@ session_start();
 
 include'connection.php';
         $tb = $_SESSION['tables'];  
-                     
  $sql = "select * from ".$_SESSION['tables']." where id = '$_SESSION[last_updated_id]'";
  // print_r($sql);
 $res = mysqli_query($conn, $sql);
