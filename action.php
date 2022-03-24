@@ -155,8 +155,8 @@ if(isset($_POST['signup'])){
 	    }
 	    else{
 	    	  // print_r('Hello');die;
-	    	  // header("location:$_SERVER[HTTP_REFERER]");
-	    	 exit(0);
+	    	  header("location:$_SERVER[HTTP_REFERER]");
+	    	 // exit(0);
  	  	  echo "<script type='text/javascript'>window.location.href = 'login.php';</script>";
 	    	  // header('Location:login.php');
 		    
