@@ -48,7 +48,7 @@
         <div class="suha-navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#suhaOffcanvas" aria-controls="suhaOffcanvas"><span></span><span></span><span></span></div>
       </div>
     </div>
-    <form action="action.php" method="POST" enctype="multipart/form-data">
+  <form action="action.php" method="POST" enctype="multipart/form-data">
      <div class="page-content-wrapper">
       <div class="container">
 
@@ -116,7 +116,7 @@
               <div class="mb-3">
                 <span style="color: red;"><strong>*</strong></span>Marked columns are to be fill mandatory. <!--  Marked are mandatory to be filled. --><hr>
               </div>
-              <!-- <form action="action.php" method="POST" enctype="multipart/form-data"> -->
+              <form action="action.php" method="POST" enctype="multipart/form-data">
                 <table class="table table-bordered " style="font-size: 10px;">
                   <thead>
                   	 <tr>
@@ -172,11 +172,12 @@
                 <input type="hidden" name="company_name" value="<?php echo $preview['comp_name'];?>">
                 <input type="hidden" name="amount" value="350">
                  <button class="btn btn-success w-100" name="electric_payment" type="submit">PROCEED FOR PAYMENT AGAINST SUBSCRIPTION</button>
-            </div>
+           </div>
           </div>
         </div>
       </div>
     </div>
+  </form>
     <div class="space"></div>
     <!-- Internet Connection Status-->
    <?php include 'footer.php';?>
