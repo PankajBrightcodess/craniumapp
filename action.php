@@ -379,13 +379,13 @@ if(isset($_POST['eot_payment'])){
 	      	$_SESSION['last_updated_id']=$lastid;
 			echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
 
-		      // header('Location:payment_2.php');
+		      header('Location:payment_2.php');
 		      $_SESSION['msg']="Student Updated Successfully !!!";
 	      }
 	      else{
 			echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
 
-	      	// header('Location:home.php');
+	      	header('Location:home.php');
 		      $_SESSION['msg']="Student Updated Successfully !!!";
 	      }
 			
