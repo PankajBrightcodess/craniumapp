@@ -21,7 +21,6 @@ $msg = "";
       // unset($_SESSION['last_inst_id']);
       $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`='$id'";
       $conn->query($sql);
-      print_($_POST['payment_2']);die;
       if(!empty($_POST['payment_2'])){
 
          $use_id =  json_decode($_COOKIE['Cookie'],true); 
