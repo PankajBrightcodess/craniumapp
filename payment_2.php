@@ -163,7 +163,7 @@ function random_number($l){
             "ondismiss": function(){
                 location.reload()
             }
-        }
+        },
         callback_url: 'https://app.craniumservices.in/payment-success.php',
     };
     var razorpay_submit_btn, razorpay_instance;
