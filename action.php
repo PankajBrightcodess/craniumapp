@@ -394,7 +394,7 @@ if(isset($_POST['eot_payment'])){
 		$_SESSION['msg']="Student Not Updated!!!";
  	  	echo "<script type='text/javascript'>window.location.href = 'eot_preview.php';</script>";
 
-		// header("location:$_SERVER[HTTP_REFERER]");
+		header("location:$_SERVER[HTTP_REFERER]");
 	}
  }
 
