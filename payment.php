@@ -152,7 +152,7 @@ function random_number($l){
                 location.reload()
             }
         },
-        callback_url: 'http://craniumservices.in/mycranium_android/payment-success.php',
+        callback_url: 'https://app.craniumservices.in/payment-success.php',
          
 
 
