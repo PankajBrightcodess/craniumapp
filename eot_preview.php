@@ -305,7 +305,7 @@
                
                 <input type="hidden" name="company_name" value="<?php echo $preview['comp_name'];?>">
                 <input type="hidden" name="amount" value="350">
-                <button class="btn btn-success w-100" name="eot_payment" type="submit">PROCEED FOR PAYMENT</button>
+                <button class="btn btn-success w-100" name="eot_payment" type="submit">PROCEED FOR PAYMENT AGAINST SUBSCRIPTION</button>
              
             </div>
           </div>
