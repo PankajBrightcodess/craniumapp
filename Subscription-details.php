@@ -16,10 +16,7 @@
     $run=mysqli_query($conn,$sub);
     $data=mysqli_fetch_assoc($run);
     
-    // echo '<pre>';
-    // print_r($data);die;
-    // echo PRE; 
-    // print_r($subdetails);die;
+ 
    
 ?>
 <?php include 'header-link.php'; ?>

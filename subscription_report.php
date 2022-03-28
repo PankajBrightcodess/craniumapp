@@ -10,16 +10,17 @@
         echo "<script> alert('$msg')</script>";
     }
     $abcd =  json_decode($_COOKIE['Cookie'],true); 
-    print_r($_COOKIE);
+    // print_r($_COOKIE);
     $id=$abcd['id'];
-    print_r($id);die;
+    // print_r($id);die;
     $sub="SELECT * FROM `myc_subscription` where `cust_id`='$id'";
+    // print_r($sub);die;
     $run=mysqli_query($conn,$sub);
     while ($data=mysqli_fetch_assoc($run)) {
       $subscription[]=$data;
     } 
-    echo '<pre>';
-    print_r($subscription);die;
+    // echo '<pre>';
+    // print_r($subscription);die;
   
     // $query="SELECT * FROM `myc_country` where `status`='1'";
     // $run=mysqli_query($conn,$query);
