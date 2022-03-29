@@ -334,14 +334,14 @@
       })
     });
     $('.state').change(function(e){
-   
+   // debugger;
          var id=$(this).val();
         $.ajax({
                 type:'POST',
                 url:'action.php',
                data:{id:id,city:'city'},
                 success: function(data){
-                      // console.log(data);
+                      console.log(data);
                     $('#city').html(data);
                     },
                     error: function(){ 

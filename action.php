@@ -255,7 +255,8 @@ if(isset($_POST['signup'])){
     }
 }
 
-if(isset($_POST['eotcrane_text'])){
+if(isset($_POST['eotcrane_text']))
+  {
 
 	$qry = "SELECT `id` FROM `myc_eotrequestform` ORDER BY `id` DESC LIMIT 1";
 	$run=mysqli_query($conn,$qry);
@@ -285,26 +286,38 @@ if(isset($_POST['eotcrane_text'])){
 		$speed_ah = $_POST['speed_ah'];
 		$speed_ct = $_POST['speed_ct'];
 		$speed_lt = $_POST['speed_lt'];
+		$added_on = date('Y-m-d');
 		$cust_id = $_POST['id'];
 		$vfd = json_encode($_POST['vfd']);
 		$scope_supply = json_encode($_POST['scope_supply']);
 		$installation = $_POST['installation'];
 		$other_remarks = $_POST['other_remarks'];
-		$query="INSERT INTO `myc_eotrequestform`(`project_loc`,`comp_name`,`address`,`country`,`state`,`dist`,`other_country_details`,`mainhost`,`auxhoist`,`location`,`crane_type`,`class_duty`,`design_standered`,`application`,`span`,`abv_floor_mh`,`blw_floor_ah`,`travel_length`,`column_to_column`,`speed_mh`,`speed_ah`,`speed_ct`,`speed_lt`,`cust_id`,`vfd`,`scope_supply`,`installation`,`other_remarks`,`refno`) VALUES ('$project_loc','$comp_name','$address','$country','$state','$dist','$other_country_details
-			','$mainhost','$auxhoist','$location','$crane_type','$class_duty','$design_standered','$application','$span','$abv_floor_mh','$blw_floor_ah','$travel_length','$column_to_column','$speed_mh','$speed_ah','$speed_ct','$speed_lt','$cust_id','$vfd','$scope_supply','$installation','$other_remarks','$refno')";
+		$query="INSERT INTO `myc_eotrequestform`(`project_loc`,`comp_name`,`address`,`country`,`state`,`dist`,`other_country_details`,`mainhost`,`auxhoist`,`location`,`crane_type`,`class_duty`,`design_standered`,`application`,`span`,`abv_floor_mh`,`blw_floor_ah`,`travel_length`,`column_to_column`,`speed_mh`,`speed_ah`,`speed_ct`,`speed_lt`,`cust_id`,`vfd`,`scope_supply`,`installation`,`other_remarks`,`refno`,`added_on`) VALUES ('$project_loc','$comp_name','$address','$country','$state','$dist','$other_country_details
+			','$mainhost','$auxhoist','$location','$crane_type','$class_duty','$design_standered','$application','$span','$abv_floor_mh','$blw_floor_ah','$travel_length','$column_to_column','$speed_mh','$speed_ah','$speed_ct','$speed_lt','$cust_id','$vfd','$scope_supply','$installation','$other_remarks','$refno','$added_on')";
 			$sql=mysqli_query($conn,$query);
 			$_SESSION['eotcrane_lasttext_id']=$conn->insert_id; 
 			if($sql){
- 	  	            echo "<script type='text/javascript'>window.location.href = 'eot_preview.php';</script>";
-				$_SESSION['msg']="Successfully Added!!!";	
+				$use_id =  json_decode($_COOKIE['Cookie'],true); 
+                        $cust_id=$use_id['id'];
+				$type = "EOT Crane";
+				$added_on = date('Y-m-d');
+				$count = 1;
+				$qrys = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
+				$sqls=mysqli_query($conn,$qrys);
+				if($sqls){
+				  echo "<script type='text/javascript'>window.location.href = 'eot_preview.php';</script>";
+				  $_SESSION['msg']="Successfully Added!!!";
+				}
+ 	  	            	
 			}
 			else{
 				$_SESSION['msg']="Not added result !!!";
 				echo "<script type='text/javascript'>window.location.href = 'eot_crane.php';</script>";
 				// header("Location:$_SERVER[HTTP_REFERER]");
 			}
+				}
 
-	}
+	
 	else{
 		$refno = 'REF-100';
 		$project_loc = $_POST['project_loc'];
@@ -340,19 +353,24 @@ if(isset($_POST['eotcrane_text'])){
 		$sql=mysqli_query($conn,$query);
 		$_SESSION['eotcrane_lasttext_id']=$conn->insert_id;
 		if($sql){
-			echo "<script type='text/javascript'>window.location.href = 'eot_preview.php';</script>";
-			 // header("Location:eot_preview.php");
-			$_SESSION['msg']="Successfully Added!!!";	
+		     $use_id =  json_decode($_COOKIE['Cookie'],true); 
+                        $cust_id=$use_id['id'];
+				$type = "EOT Crane";
+				$added_on = date('Y-m-d');
+				$count = 1;
+				$qrys = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
+			if($sqls){
+				echo "<script type='text/javascript'>window.location.href = 'eot_preview.php';</script>";
+		            // header("Location:eot_preview.php");
+		            $_SESSION['msg']="Successfully Added!!!";	
+			}	
 		}
 		else{
 			$_SESSION['msg']="Not added result !!!";
 			echo "<script type='text/javascript'>window.location.href = 'eot_crane.php';</script>";
-
-			// header("Location:$_SERVER[HTTP_REFERER]");
+				// header("Location:$_SERVER[HTTP_REFERER]");
 		}
-
 	}
-	
 }
 if(isset($_POST['eot_payment'])){
 	
@@ -365,13 +383,13 @@ if(isset($_POST['eot_payment'])){
 	 // print_r($data);die;
 	  $query="UPDATE `myc_eotrequestform` SET `amount`='$amount',`order_no`='$order_no'  WHERE `id`='$lastid'";
 	$run=mysqli_query($conn,$query);
-	$_SESSION['tables'] = myc_eotrequestform;
+	$_SESSION['tables'] = 'myc_eotrequestform';
 	if($run){
 		// ''''''''''''subscription check''''''''''''''''
 		$use_id =  json_decode($_COOKIE['Cookie'],true); 
             $cust_id=$use_id['id'];
             $exp_date = date('Y-m-d');
-            $qry = "SELECT `id` FROM `myc_subscription` WHERE `cust_id`='$cust_id' AND `expire_date`>'$exp_date'";
+            $qry = "SELECT * FROM `myc_subscription` WHERE `cust_id`='$cust_id' AND `expire_date`>'$exp_date'";
 	      $run=mysqli_query($conn,$qry);
 	      $data=mysqli_fetch_assoc($run);
 
@@ -383,10 +401,33 @@ if(isset($_POST['eot_payment'])){
 		      $_SESSION['msg']="Student Updated Successfully !!!";
 	      }
 	      else{
-			echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
+	      	// print_r($data);die;
+	      	   $start_date = $data['start_date'];
+	      	   $expire_date = $data['expire_date'];
+	      	   $qry = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id' AND `added_on` BETWEEN  '$start_date' AND '$expire_date'";
+	              $run=mysqli_query($conn,$qry);
+	                $data=mysqli_num_rows($run);
+	                // print_r($data);die;
+	                setcookie("count",$data,time() + (86400 * 30),"/");
+	                $count =$_COOKIE['count'];
+	                if($count>=6){
+	                	setcookie("count",$data,time() - (86400 * 90),"/");
+	                	$qrys = "DELETE FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
 
-	      	header('Location:home.php');
-		      $_SESSION['msg']="Student Updated Successfully !!!";
+	                	$run=mysqli_query($conn,$qrys);
+	                	$_SESSION['last_updated_id']=$lastid;
+			      echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
+		            header('Location:payment_2.php');
+		            $_SESSION['msg']="Student Updated Successfully !!!";
+	                }
+	                else{
+	                	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
+	      	      header('Location:home.php');
+		             $_SESSION['msg']="Student Updated Successfully !!!";
+	                }
+
+
+			
 	      }
 			
 	}
@@ -530,9 +571,18 @@ if(isset($_POST['gantry_text'])){
 		$sql=mysqli_query($conn,$query);
 		$_SESSION['gantry_lasttext_id']=$conn->insert_id;
 		if($sql){
-			echo "<script type='text/javascript'>window.location.href = 'gantry_preview.php';</script>";
-			 header("Location:gantry_preview.php");
-			$_SESSION['msg']="Successfully Added!!!";	
+		     $use_id =  json_decode($_COOKIE['Cookie'],true); 
+                  $cust_id=$use_id['id'];
+			 $type = "Gantry Crane";
+			$added_on = date('Y-m-d');
+			$count = 1;
+			$qrys = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
+			$sqls=mysqli_query($conn,$qrys);
+			if($sqls){
+				echo "<script type='text/javascript'>window.location.href = 'gantry_preview.php';</script>";
+				 header("Location:gantry_preview.php");
+				$_SESSION['msg']="Successfully Added!!!";	
+		      }
 		}
 		else{
 			$_SESSION['msg']="Not added result !!!";
@@ -573,9 +623,18 @@ if(isset($_POST['gantry_text'])){
 		$sql=mysqli_query($conn,$query);
 		$_SESSION['gantry_lasttext_id']=$conn->insert_id;
 		if($sql){
-			echo "<script type='text/javascript'>window.location.href = 'gantry_preview.php';</script>";
-			 // header("Location:gantry_preview.php");
-			$_SESSION['msg']="Successfully Added!!!";	
+		      $use_id =  json_decode($_COOKIE['Cookie'],true); 
+                  $cust_id=$use_id['id'];
+			 $type = "Gantry Crane";
+			$added_on = date('Y-m-d');
+			$count = 1;
+			$qrys = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
+			$sqls=mysqli_query($conn,$qrys);
+			if($sqls){
+				echo "<script type='text/javascript'>window.location.href = 'gantry_preview.php';</script>";
+				 // header("Location:gantry_preview.php");
+				$_SESSION['msg']="Successfully Added!!!";	
+			}
 		}
 		else{
 			echo "<script type='text/javascript'>window.location.href = 'gantry_crane.php';</script>";
@@ -604,7 +663,7 @@ if(isset($_POST['ganty_payment'])){
 		$use_id =  json_decode($_COOKIE['Cookie'],true); 
             $cust_id=$use_id['id'];
             $exp_date = date('Y-m-d');
-            $qry = "SELECT `id` FROM `myc_subscription` WHERE `cust_id`='$cust_id' AND `expire_date`>'$exp_date'";
+            $qry = "SELECT * FROM `myc_subscription` WHERE `cust_id`='$cust_id' AND `expire_date`>'$exp_date'";
 	      $run=mysqli_query($conn,$qry);
 	      $data=mysqli_fetch_assoc($run);
 
@@ -615,10 +674,30 @@ if(isset($_POST['ganty_payment'])){
 		      $_SESSION['msg']="Student Updated Successfully !!!";
 	      }
 	      else{
-			echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
-	      	// header('Location:home.php');
-		      $_SESSION['msg']="Student Updated Successfully !!!";
-	      }
+			  $start_date = $data['start_date'];
+	      	   $expire_date = $data['expire_date'];
+	      	   $qry = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id' AND `added_on` BETWEEN  '$start_date' AND '$expire_date'";
+	              $run=mysqli_query($conn,$qry);
+	                $data=mysqli_num_rows($run);
+	                // print_r($data);die;
+	                setcookie("count",$data,time() + (86400 * 30),"/");
+	                $count =$_COOKIE['count'];
+	                if($count>=6){
+	                	setcookie("count",$data,time() - (86400 * 90),"/");
+	                	$qrys = "DELETE FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
+
+	                	$run=mysqli_query($conn,$qrys);
+	                	$_SESSION['last_updated_id']=$lastid;
+			      echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
+		            header('Location:payment_2.php');
+		            $_SESSION['msg']="Student Updated Successfully !!!";
+	                }
+	                else{
+	                	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
+	      	      header('Location:home.php');
+		             $_SESSION['msg']="Student Updated Successfully !!!";
+	                }
+
 		// $_SESSION['last_updated_id']=$lastid;
 		//  header('Location:payment_2.php');
 		// $_SESSION['msg']="Student Updated Successfully !!!";	
@@ -764,9 +843,18 @@ if(isset($_POST['jib_text'])){
 		$sql=mysqli_query($conn,$query);
 		$_SESSION['jib_lasttext_id']=$conn->insert_id;
 		if($sql){
-			echo "<script type='text/javascript'>window.location.href = 'jib_preview.php';</script>";
-			 // header("Location:jib_preview.php");
-			$_SESSION['msg']="Successfully Added!!!";	
+			$use_id =  json_decode($_COOKIE['Cookie'],true); 
+                  $cust_id=$use_id['id'];
+			$type = "JIB Crane";
+			$added_on = date('Y-m-d');
+			$count = 1;
+			$qrys = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
+			$sqls=mysqli_query($conn,$qrys);
+			if($sqls){
+				echo "<script type='text/javascript'>window.location.href = 'jib_preview.php';</script>";
+				 // header("Location:jib_preview.php");
+				$_SESSION['msg']="Successfully Added!!!";	
+			}
 		}
 		else{
 			$_SESSION['msg']="Not added result !!!";
@@ -808,9 +896,18 @@ if(isset($_POST['jib_text'])){
 		$sql=mysqli_query($conn,$query);
 		$_SESSION['jib_lasttext_id']=$conn->insert_id;
 		if($sql){
-			 // header("Location:jib_preview.php");
-			 echo "<script type='text/javascript'>window.location.href = 'jib_preview.php';</script>";
-			$_SESSION['msg']="Successfully Added!!!";	
+			$use_id =  json_decode($_COOKIE['Cookie'],true); 
+                  $cust_id=$use_id['id'];
+			$type = "JIB Crane";
+			$added_on = date('Y-m-d');
+			$count = 1;
+			$qrys = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
+			$sqls=mysqli_query($conn,$qrys);
+			if($sqls){
+				 // header("Location:jib_preview.php");
+				 echo "<script type='text/javascript'>window.location.href = 'jib_preview.php';</script>";
+				$_SESSION['msg']="Successfully Added!!!";	
+			}
 		}
 		else{
 			$_SESSION['msg']="Not added result !!!";
@@ -840,7 +937,7 @@ if(isset($_POST['jib_payment'])){
 		$use_id =  json_decode($_COOKIE['Cookie'],true); 
             $cust_id=$use_id['id'];
             $exp_date = date('Y-m-d');
-            $qry = "SELECT `id` FROM `myc_subscription` WHERE `cust_id`='$cust_id' AND `expire_date`>'$exp_date'";
+            $qry = "SELECT * FROM `myc_subscription` WHERE `cust_id`='$cust_id' AND `expire_date`>'$exp_date'";
 	      $run=mysqli_query($conn,$qry);
 	      $data=mysqli_fetch_assoc($run);
 
@@ -851,9 +948,30 @@ if(isset($_POST['jib_payment'])){
 		      $_SESSION['msg']="Student Updated Successfully !!!";
 	      }
 	      else{
-	      	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
-	      	// header('Location:home.php');
-		      $_SESSION['msg']="Student Updated Successfully !!!";
+	      	  $start_date = $data['start_date'];
+	      	   $expire_date = $data['expire_date'];
+	      	   $qry = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id' AND `added_on` BETWEEN  '$start_date' AND '$expire_date'";
+	              $run=mysqli_query($conn,$qry);
+	                $data=mysqli_num_rows($run);
+	                // print_r($data);die;
+	                setcookie("count",$data,time() + (86400 * 30),"/");
+	                $count =$_COOKIE['count'];
+	                if($count>=6){
+	                	setcookie("count",$data,time() - (86400 * 90),"/");
+	                	$qrys = "DELETE FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
+
+	                	$run=mysqli_query($conn,$qrys);
+	                	$_SESSION['last_updated_id']=$lastid;
+			      echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
+		            header('Location:payment_2.php');
+		            $_SESSION['msg']="Student Updated Successfully !!!";
+	                }
+	                else{
+	                	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
+	      	      header('Location:home.php');
+		             $_SESSION['msg']="Student Updated Successfully !!!";
+	                }
+
 	      }
 		// $_SESSION['last_updated_id']=$lastid;
 		//  header('Location:payment_2.php');
@@ -1101,9 +1219,19 @@ if(isset($_POST['electric_text'])){
 		$sql=mysqli_query($conn,$query);
 		$_SESSION['electricwire_lasttext_id']=$conn->insert_id;
 		if($sql){
-			 header("Location:electric_preview.php");
-			 echo "<script type='text/javascript'>window.location.href='electric_preview.php';</script>";
-			$_SESSION['msg']="Successfully Added!!!";	
+
+			$use_id =  json_decode($_COOKIE['Cookie'],true); 
+                  $cust_id=$use_id['id'];
+			$type = "Electric Wire Crane";
+			$added_on = date('Y-m-d');
+			$count = 1;
+			$qrys = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
+			$sqls=mysqli_query($conn,$qrys);
+			if($sqls){
+				 header("Location:electric_preview.php");
+				 echo "<script type='text/javascript'>window.location.href='electric_preview.php';</script>";
+				$_SESSION['msg']="Successfully Added!!!";	
+			}
 		}
 		else{
 			$_SESSION['msg']="Not added result !!!";
@@ -1128,7 +1256,7 @@ if(isset($_POST['electric_payment'])){
 		$use_id =  json_decode($_COOKIE['Cookie'],true); 
             $cust_id=$use_id['id'];
             $exp_date = date('Y-m-d');
-            $qry = "SELECT `id` FROM `myc_subscription` WHERE `cust_id`='$cust_id' AND `expire_date`>'$exp_date'";
+            $qry = "SELECT * FROM `myc_subscription` WHERE `cust_id`='$cust_id' AND `expire_date`>'$exp_date'";
 	      $run=mysqli_query($conn,$qry);
 	      $data=mysqli_fetch_assoc($run);
 
@@ -1139,9 +1267,30 @@ if(isset($_POST['electric_payment'])){
 		      $_SESSION['msg']="Student Updated Successfully !!!";
 	      }
 	      else{
-		      $_SESSION['msg']="Student Updated Successfully !!!";
-		      echo "<script type='text/javascript'>window.location.href='home.php';</script>";
-	      	// header('Location:home.php');
+		      $start_date = $data['start_date'];
+	      	   $expire_date = $data['expire_date'];
+	      	   $qry = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id' AND `added_on` BETWEEN  '$start_date' AND '$expire_date'";
+	              $run=mysqli_query($conn,$qry);
+	                $data=mysqli_num_rows($run);
+	                // print_r($data);die;
+	                setcookie("count",$data,time() + (86400 * 30),"/");
+	                $count =$_COOKIE['count'];
+	                if($count>=6){
+	                	setcookie("count",$data,time() - (86400 * 90),"/");
+	                	$qrys = "DELETE FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
+
+	                	$run=mysqli_query($conn,$qrys);
+	                	$_SESSION['last_updated_id']=$lastid;
+			      echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
+		            header('Location:payment_2.php');
+		            $_SESSION['msg']="Student Updated Successfully !!!";
+	                }
+	                else{
+	                	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
+	      	      header('Location:home.php');
+		             $_SESSION['msg']="Student Updated Successfully !!!";
+	                }
+
 	      }
 		// $_SESSION['last_updated_id']=$lastid;
 		//  header('Location:payment_2.php');
