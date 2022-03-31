@@ -36,6 +36,11 @@ $msg = "";
             if($runs==0){
               $qrys2 = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
               $sqls=mysqli_query($conn,$qrys2);
+                $qrys4 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
+               $run4=mysqli_query($conn,$qrys4);
+              $runss=mysqli_num_rows($run4);
+               setcookie("count",$runss,time() + (86400 * 30),"/");
+                $count =$_COOKIE['count'];
             }
            
       }

@@ -15,6 +15,13 @@
     // print_r($sub);die;   
     $run=mysqli_query($conn,$sub);
     $data=mysqli_fetch_assoc($run);
+
+     $use_id =  json_decode($_COOKIE['Cookie'],true); 
+         $cust_id=$use_id['id'];
+
+     $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
+            $run3=mysqli_query($conn,$qrys3);
+            $datas=mysqli_num_rows($run3);
     
  
    
@@ -54,7 +61,7 @@
                   if(!empty($data)){
                     ?> <div class="col-12">
                 <p><strong><i> Your Subscription is valid from <?php echo date('d-m-Y',strtotime($data['start_date']));?> to <?php echo date('d-m-Y',strtotime($data['expire_date']));?>.</i></strong> </p>
-                <p><strong><i>And Your total Subscription is <?php echo $_COOKIE['count'];?>.</i></strong></p>
+                <p><strong><i>And Your total Subscription is <?php echo $datas;}else echo '1'; ?>.</i></strong></p>
               </div><?php
                   }
 
