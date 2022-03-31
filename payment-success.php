@@ -26,8 +26,9 @@ $msg = "";
          $start_date = date('Y-m-d');
          $expire_date = date("Y-m-d",strtotime("+60 day"));
          $sql1 = "INSERT INTO `myc_subscription`(`cust_id`,`start_date`,`expire_date`) VALUES ('$cust_id','$start_date','$expire_date')";
-         // print_r($sql1);
+         print_r($sql1);
          $qrys=mysqli_query($conn,$sql1);
+         print_r($qrys);
          if($qrys){
             $type = "EOT Crane";
             $added_on = date('Y-m-d');
@@ -45,7 +46,11 @@ $msg = "";
                setcookie("count",$runss,time() + (86400 * 30),"/");
                   
             }
+         }
+         else{
+          echo 'fail';
          }  
+         die;
       }
     }
 ?>
