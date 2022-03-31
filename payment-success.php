@@ -27,11 +27,14 @@ $msg = "";
          $expire_date = date("Y-m-d",strtotime("+60 day"));
          $sql1 = "INSERT INTO `myc_subscription`(`cust_id`,`start_date`,`expire_date`) VALUES ('$cust_id','$start_date','$expire_date')";
          $qrys=mysqli_query($conn,$sql1);
+         if($qrys){
            $type = "EOT Crane";
            $count=1;
            $added_on = date('Y-m-d');
            $qrys2 = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
            $sqls=mysqli_query($conn,$qrys2);
+         }
+           
            
       }
     }
