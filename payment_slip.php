@@ -73,7 +73,6 @@ include('connection.php');
              <?php 
              include "connection.php";
              $id = $_SESSION['last_updated_id'];
-             print)r($id);die;
              // print_r($_SESSION['tablesss']);
               
               $query = "select * from ".$_SESSION['tables']." where id='$id'";
