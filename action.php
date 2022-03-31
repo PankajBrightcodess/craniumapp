@@ -371,8 +371,8 @@ if(isset($_POST['eot_payment'])){
 	
 	$lastid = $_SESSION['eotcrane_lasttext_id'];
 	$amt =  ($_POST['amount'])+($_POST['amount']*18/100);
-	$amount = 1;
-	// $amt;
+	$amount =$amt;
+	// ;
 	$length = 15;
 	 $order_no=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
 	 $added_on = date('Y-m-d');
