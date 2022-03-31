@@ -28,7 +28,7 @@ $msg = "";
          $sql1 = "INSERT INTO `myc_subscription`(`cust_id`,`start_date`,`expire_date`) VALUES ('$cust_id','$start_date','$expire_date')";
          print_r($sql1);
          $qrys=mysqli_query($conn,$sql1);
-         print_r($qrys);
+         print_r($qrys);die;
          if($qrys){
             $type = "EOT Crane";
             $added_on = date('Y-m-d');

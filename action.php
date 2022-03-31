@@ -149,7 +149,7 @@ if(isset($_POST['signup'])){
 
  	  if(!empty($data)){
  	  	  echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
-	    	 header('Location:home.php?id='.$id.'&name='.$name.'&company_name='.$comp_name.'&gst_no='.$gst_no.'&contact_no='.$contact_no.'&email_id='.$email_id.'&address='.$address.'');
+	    	 header('location:home.php?id='.$id.'&name='.$name.'&company_name='.$comp_name.'&gst_no='.$gst_no.'&contact_no='.$contact_no.'&email_id='.$email_id.'&address='.$address.'');
 	    	 //  exit(0);
 	    	 // header("location:$_SERVER[HTTP_REFERER]");
 	    }
@@ -158,7 +158,7 @@ if(isset($_POST['signup'])){
 	    	  header("location:$_SERVER[HTTP_REFERER]");
 	    	 // exit(0);
  	  	  echo "<script type='text/javascript'>window.location.href = 'login.php';</script>";
-	    	  // header('Location:login.php');
+	    	  // header('location:login.php');
 		    
 	    }
  	
@@ -240,14 +240,14 @@ if(isset($_POST['signup'])){
 		if($sql){
  	  	  echo "<script type='text/javascript'>window.location.href = 'preview_uploadfile.php';</script>";
 
-			 // header("Location:preview_uploadfile.php");
+			 // header("location:preview_uploadfile.php");
 			$_SESSION['msg']="Successfully Added!!!";	
 		}
 		else{
 
 			$_SESSION['msg']="Not added result !!!";
  	  	     echo "<script type='text/javascript'>window.location.href = 'eot_crane.php';</script>";
-			// header("Location:$_SERVER[HTTP_REFERER]");
+			// header("location:$_SERVER[HTTP_REFERER]");
 		}
     }
 }
@@ -308,7 +308,7 @@ if(isset($_POST['eotcrane_text'])){
 			else{
 				$_SESSION['msg']="Not added result !!!";
 				echo "<script type='text/javascript'>window.location.href = 'eot_crane.php';</script>";
-				// header("Location:$_SERVER[HTTP_REFERER]");
+				// header("location:$_SERVER[HTTP_REFERER]");
 			}
 		}
 
@@ -356,14 +356,14 @@ if(isset($_POST['eotcrane_text'])){
 				$qrys = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
 			if($sqls){
 				echo "<script type='text/javascript'>window.location.href = 'eot_preview.php';</script>";
-		            // header("Location:eot_preview.php");
+		            // header("location:eot_preview.php");
 		            $_SESSION['msg']="Successfully Added!!!";	
 			}	
 		}
 		else{
 			$_SESSION['msg']="Not added result !!!";
 			echo "<script type='text/javascript'>window.location.href = 'eot_crane.php';</script>";
-				// header("Location:$_SERVER[HTTP_REFERER]");
+				// header("location:$_SERVER[HTTP_REFERER]");
 		}
 	}
 }
@@ -393,7 +393,7 @@ if(isset($_POST['eot_payment'])){
 	      	$_SESSION['last_updated_id']=$lastid;
 			echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
 
-		      header('Location:payment_2.php');
+		      header('location:payment_2.php');
 		      $_SESSION['msg']="Student Updated Successfully !!!";
 	      }
 	      else{
@@ -413,12 +413,12 @@ if(isset($_POST['eot_payment'])){
 	                	$run=mysqli_query($conn,$qrys);
 	                	$_SESSION['last_updated_id']=$lastid;
 			      echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
-		            header('Location:payment_2.php');
+		            header('location:payment_2.php');
 		            $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 	                else{
 	                	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
-	      	      header('Location:home.php');
+	      	      header('location:home.php');
 		             $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 
@@ -512,7 +512,7 @@ if(isset($_POST['eot_payment'])){
 		$sql=mysqli_query($conn,$query);
 		$_SESSION['last_upload_id']=$conn->insert_id; 
 		if($sql){
-			 // header("Location:preview_uploadfile.php");
+			 // header("location:preview_uploadfile.php");
  	  	       echo "<script type='text/javascript'>window.location.href = 'preview_uploadfile.php';</script>";
 
 			$_SESSION['msg']="Successfully Added!!!";	
@@ -521,7 +521,7 @@ if(isset($_POST['eot_payment'])){
 			$_SESSION['msg']="Not added result !!!";
  	  	      echo "<script type='text/javascript'>window.location.href = 'gantry_crane.php';</script>";
 
-			// header("Location:$_SERVER[HTTP_REFERER]");
+			// header("location:$_SERVER[HTTP_REFERER]");
 		}
     }
 }
@@ -576,14 +576,14 @@ if(isset($_POST['gantry_text'])){
 			$sqls=mysqli_query($conn,$qrys);
 			if($sqls){
 				echo "<script type='text/javascript'>window.location.href = 'gantry_preview.php';</script>";
-				 header("Location:gantry_preview.php");
+				 header("location:gantry_preview.php");
 				$_SESSION['msg']="Successfully Added!!!";	
 		      }
 		}
 		else{
 			$_SESSION['msg']="Not added result !!!";
 			echo "<script type='text/javascript'>window.location.href = 'gantry_crane.php';</script>";
-			header("Location:$_SERVER[HTTP_REFERER]");
+			header("location:$_SERVER[HTTP_REFERER]");
 		}
 	}else{
 	$refno = 'REF-200';	
@@ -628,14 +628,14 @@ if(isset($_POST['gantry_text'])){
 			$sqls=mysqli_query($conn,$qrys);
 			if($sqls){
 				echo "<script type='text/javascript'>window.location.href = 'gantry_preview.php';</script>";
-				 // header("Location:gantry_preview.php");
+				 // header("location:gantry_preview.php");
 				$_SESSION['msg']="Successfully Added!!!";	
 			}
 		}
 		else{
 			echo "<script type='text/javascript'>window.location.href = 'gantry_crane.php';</script>";
 			$_SESSION['msg']="Not added result !!!";
-			// header("Location:$_SERVER[HTTP_REFERER]");
+			// header("location:$_SERVER[HTTP_REFERER]");
 		}
 
 	}
@@ -663,7 +663,7 @@ if(isset($_POST['ganty_payment'])){
 	      if(empty($data)){
 	      	$_SESSION['last_updated_id']=$lastid;
 			echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
-		      // header('Location:payment_2.php');
+		      // header('location:payment_2.php');
 		      $_SESSION['msg']="Student Updated Successfully !!!";
 	      }
 	      else{
@@ -682,12 +682,12 @@ if(isset($_POST['ganty_payment'])){
 	                	$run=mysqli_query($conn,$qrys);
 	                	$_SESSION['last_updated_id']=$lastid;
 			      echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
-		            header('Location:payment_2.php');
+		            header('location:payment_2.php');
 		            $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 	                else{
 	                	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
-	      	      header('Location:home.php');
+	      	      header('location:home.php');
 		             $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 	      }
@@ -775,14 +775,14 @@ if(isset($_POST['jib_upload'])){
 		$_SESSION['last_upload_id']=$conn->insert_id;
 		if($sql){
 			echo "<script type='text/javascript'>window.location.href = 'preview_uploadfile.php';</script>";
-			 // header("Location:preview_uploadfile.php");
+			 // header("location:preview_uploadfile.php");
 			$_SESSION['msg']="Successfully Added!!!";	
 		}
 		else{
 			$_SESSION['msg']="Not added result !!!";
 			echo "<script type='text/javascript'>window.location.href = 'jib_crane.php';</script>";
 
-			// header("Location:$_SERVER[HTTP_REFERER]");
+			// header("location:$_SERVER[HTTP_REFERER]");
 		}
     }
 }
@@ -839,7 +839,7 @@ if(isset($_POST['jib_text']))
 			$sqls=mysqli_query($conn,$qrys);
 			if($sqls){
 				echo "<script type='text/javascript'>window.location.href = 'jib_preview.php';</script>";
-				 // header("Location:jib_preview.php");
+				 // header("location:jib_preview.php");
 				$_SESSION['msg']="Successfully Added!!!";	
 			}
 		}
@@ -847,7 +847,7 @@ if(isset($_POST['jib_text']))
 			$_SESSION['msg']="Not added result !!!";
 			echo "<script type='text/javascript'>window.location.href = 'jib_crane.php';</script>";
 
-			// header("Location:$_SERVER[HTTP_REFERER]");
+			// header("location:$_SERVER[HTTP_REFERER]");
 		}
      }
      else{
@@ -891,7 +891,7 @@ if(isset($_POST['jib_text']))
 			$qrys = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
 			$sqls=mysqli_query($conn,$qrys);
 			if($sqls){
-				 // header("Location:jib_preview.php");
+				 // header("location:jib_preview.php");
 				 echo "<script type='text/javascript'>window.location.href = 'jib_preview.php';</script>";
 				$_SESSION['msg']="Successfully Added!!!";	
 			}
@@ -899,7 +899,7 @@ if(isset($_POST['jib_text']))
 		else{
 			$_SESSION['msg']="Not added result !!!";
 			echo "<script type='text/javascript'>window.location.href = 'jib_crane.php';</script>";
-			// header("Location:$_SERVER[HTTP_REFERER]");
+			// header("location:$_SERVER[HTTP_REFERER]");
 		}
 
    }
@@ -931,7 +931,7 @@ if(isset($_POST['jib_payment'])){
 	      if(empty($data)){
 	      	$_SESSION['last_updated_id']=$lastid;
 	      	echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
-		      // header('Location:payment_2.php');
+		      // header('location:payment_2.php');
 		      $_SESSION['msg']="Student Updated Successfully !!!";
 	      }
 	      else{
@@ -950,18 +950,18 @@ if(isset($_POST['jib_payment'])){
 	                	$run=mysqli_query($conn,$qrys);
 	                	$_SESSION['last_updated_id']=$lastid;
 			      echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
-		            header('Location:payment_2.php');
+		            header('location:payment_2.php');
 		            $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 	                else{
 	                	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
-	      	      header('Location:home.php');
+	      	      header('location:home.php');
 		             $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 
 	      }
 		// $_SESSION['last_updated_id']=$lastid;
-		//  header('Location:payment_2.php');
+		//  header('location:payment_2.php');
 		// $_SESSION['msg']="Student Updated Successfully !!!";	
 	}
 	else{
@@ -1038,13 +1038,13 @@ if(isset($_POST['monorail_upload'])){
 		$query="INSERT INTO `myc_upload`(`file1`,`file2`,`file3`,`file4`,`file5`,`custmr_id`,`device_id`,`added_on`) VALUES ('$image1','$image2','$image3','$image4','$image5','$cstmr_id','$device','$added_on')";
 		$sql=mysqli_query($conn,$query);
 		if($sql){
-			 header("Location:$_SERVER[HTTP_REFERER]");
+			 header("location:$_SERVER[HTTP_REFERER]");
 			 // echo "<script type='text/javascript'>window.location.href = 'jib_preview.php';</script>";
 			$_SESSION['msg']="Successfully Added!!!";	
 		}
 		else{
 			$_SESSION['msg']="Not added result !!!";
-			header("Location:$_SERVER[HTTP_REFERER]");
+			header("location:$_SERVER[HTTP_REFERER]");
 		}
     }
 }
@@ -1075,12 +1075,12 @@ if(isset($_POST['monorail_text'])){
 
 		$sql=mysqli_query($conn,$query);
 		if($sql){
-			 header("Location:$_SERVER[HTTP_REFERER]");
+			 header("location:$_SERVER[HTTP_REFERER]");
 			$_SESSION['msg']="Successfully Added!!!";	
 		}
 		else{
 			$_SESSION['msg']="Not added result !!!";
-			header("Location:$_SERVER[HTTP_REFERER]");
+			header("location:$_SERVER[HTTP_REFERER]");
 		}
 }
 // '''''''''''''''''''''''''''ELECTRIC WIRE''''''''''''''''''''''''''''''
@@ -1161,13 +1161,13 @@ if(isset($_POST['electric_upload'])){
 		$_SESSION['last_upload_id']=$conn->insert_id;
 		if($sql){
 			echo "<script type='text/javascript'>window.location.href='preview_uploadfile.php';</script>";
-			 header("Location:preview_uploadfile.php");
+			 header("location:preview_uploadfile.php");
 			$_SESSION['msg']="Successfully Added!!!";	
 		}
 		else{
 
 			$_SESSION['msg']="Not added result !!!";
-			// header("Location:$_SERVER[HTTP_REFERER]");
+			// header("location:$_SERVER[HTTP_REFERER]");
 			echo "<script type='text/javascript'>window.location.href='electricwire.php';</script>";
 		}
     }
@@ -1215,7 +1215,7 @@ if(isset($_POST['electric_text'])){
 			$qrys = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
 			$sqls=mysqli_query($conn,$qrys);
 			if($sqls){
-				 header("Location:electric_preview.php");
+				 header("location:electric_preview.php");
 				 echo "<script type='text/javascript'>window.location.href='electric_preview.php';</script>";
 				$_SESSION['msg']="Successfully Added!!!";	
 			}
@@ -1223,7 +1223,7 @@ if(isset($_POST['electric_text'])){
 		else{
 			$_SESSION['msg']="Not added result !!!";
 			echo "<script type='text/javascript'>window.location.href='electricwire.php';</script>";
-			// header("Location:$_SERVER[HTTP_REFERER]");
+			// header("location:$_SERVER[HTTP_REFERER]");
 		}
 }
 if(isset($_POST['electric_payment'])){
@@ -1250,7 +1250,7 @@ if(isset($_POST['electric_payment'])){
 	      if(empty($data)){
 	      	$_SESSION['last_updated_id']=$lastid;
 	      	echo "<script type='text/javascript'>window.location.href='payment_2.php';</script>";
-		      // header('Location:payment_2.php');
+		      // header('location:payment_2.php');
 		      $_SESSION['msg']="Student Updated Successfully !!!";
 	      }
 	      else{
@@ -1269,18 +1269,18 @@ if(isset($_POST['electric_payment'])){
 	                	$run=mysqli_query($conn,$qrys);
 	                	$_SESSION['last_updated_id']=$lastid;
 			      echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
-		            header('Location:payment_2.php');
+		            header('location:payment_2.php');
 		            $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 	                else{
 	                	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
-	      	      header('Location:home.php');
+	      	      header('location:home.php');
 		             $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 
 	      }
 		// $_SESSION['last_updated_id']=$lastid;
-		//  header('Location:payment_2.php');
+		//  header('location:payment_2.php');
 		// $_SESSION['msg']="Student Updated Successfully !!!";	
 	}
 	else{
@@ -1387,14 +1387,14 @@ if(isset($_POST['Preview'])){
 		if($sql){
 		echo "<script type='text/javascript'>window.location.href='preview.php';</script>";
 
-			 // header("Location:preview.php");
+			 // header("location:preview.php");
 			$_SESSION['msg']="Successfully Added!!!";	
 		}
 		else{
 		echo "<script type='text/javascript'>window.location.href='chain_pulley.php';</script>";
 
 			$_SESSION['msg']="Not added result !!!";
-			header("Location:$_SERVER[HTTP_REFERER]");
+			header("location:$_SERVER[HTTP_REFERER]");
 		}
 }
 
@@ -1478,14 +1478,14 @@ if(isset($_POST['electric_chain_submit'])){
 		if($sql){
 		      echo "<script type='text/javascript'>window.location.href='electric_chain_details_preview.php';</script>";
 
-			 // header("Location:electric_chain_details_preview.php");
+			 // header("location:electric_chain_details_preview.php");
 			$_SESSION['msg']="Successfully Added!!!";	
 		}
 		else{
 			$_SESSION['msg']="Not added result !!!";
 			echo "<script type='text/javascript'>window.location.href='electric_chain.php';</script>";
 
-			// header("Location:$_SERVER[HTTP_REFERER]");
+			// header("location:$_SERVER[HTTP_REFERER]");
 		}
 }
 
@@ -1502,7 +1502,7 @@ if(isset($_POST['pay_now_electric'])){
 		 $_SESSION['last_updated_id'] = $ids;
 		 $_SESSION['tables'] = myc_electric_chain_details;
 		 // print_r($_SESSION['last_updated_id']);die;
-		 // header('Location:payment.php');
+		 // header('location:payment.php');
 		 echo "<script type='text/javascript'>window.location.href='payment.php';</script>";
 		$_SESSION['msg']="Student Updated Successfully !!!";	
 	}
@@ -1529,7 +1529,7 @@ if(isset($_POST['pay_now'])){
 		 $_SESSION['last_updated_id'] = $ids;
 		 $_SESSION['tables'] = myc_chain_pully_details;
 		 // print_r($_SESSION['last_updated_id']);die;
-		 // header('Location:payment.php');
+		 // header('location:payment.php');
 		 echo "<script type='text/javascript'>window.location.href='payment.php';</script>";
 		$_SESSION['msg']="Student Updated Successfully !!!";	
 	}
