@@ -19,9 +19,10 @@
      $use_id =  json_decode($_COOKIE['Cookie'],true); 
          $cust_id=$use_id['id'];
 
-     // $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
-     //        $run3=mysqli_query($conn,$qrys3);
-     //        $runs=mysqli_num_rows($run3);
+     $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
+            $run3=mysqli_query($conn,$qrys3);
+            $runs=mysqli_num_rows($run3);
+            print_r($runs);die;
     
  
    
