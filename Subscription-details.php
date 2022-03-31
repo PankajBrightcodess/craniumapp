@@ -22,8 +22,8 @@
      $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
             $run3=mysqli_query($conn,$qrys3);
             $runs=mysqli_num_rows($run3);
-            echo $runs;
-            print_r($runs);die;
+            // echo $runs;
+            // print_r($runs);die;
     
  
    
