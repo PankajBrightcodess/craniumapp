@@ -165,15 +165,12 @@ if(isset($_POST['signup'])){
  }
 
  if(isset($_POST['eotcrane_upload'])){
- 	     // echo '<pre>';
- 	     // print_r($_POST);
- 	     // print_r($_FILES);die;
- 	      $comp_name = $_POST['comp_name'];
- 	      $address = $_POST['address'];
- 	      $country = $_POST['country'];
- 	      $state = $_POST['state'];
- 	      $dist = $_POST['dist'];
- 	      $other_country_details = $_POST['other_country_details'];
+    $comp_name = $_POST['comp_name'];
+    $address = $_POST['address'];
+    $country = $_POST['country'];
+    $state = $_POST['state'];
+    $dist = $_POST['dist'];
+    $other_country_details = $_POST['other_country_details'];
 
 	 	$photo1 = $_FILES['file1']['name'];
 		$photo1 = explode('.',$photo1);
@@ -255,9 +252,7 @@ if(isset($_POST['signup'])){
     }
 }
 
-if(isset($_POST['eotcrane_text']))
-  {
-
+if(isset($_POST['eotcrane_text'])){
 	$qry = "SELECT `id` FROM `myc_eotrequestform` ORDER BY `id` DESC LIMIT 1";
 	$run=mysqli_query($conn,$qry);
 	$data=mysqli_fetch_assoc($run);
@@ -315,7 +310,7 @@ if(isset($_POST['eotcrane_text']))
 				echo "<script type='text/javascript'>window.location.href = 'eot_crane.php';</script>";
 				// header("Location:$_SERVER[HTTP_REFERER]");
 			}
-				}
+		}
 
 	
 	else{
@@ -376,7 +371,8 @@ if(isset($_POST['eot_payment'])){
 	
 	$lastid = $_SESSION['eotcrane_lasttext_id'];
 	$amt =  ($_POST['amount'])+($_POST['amount']*18/100);
-	$amount = $amt;
+	$amount = 1;
+	// $amt;
 	$length = 15;
 	 $order_no=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
 	 $added_on = date('Y-m-d');
@@ -645,9 +641,6 @@ if(isset($_POST['gantry_text'])){
 	}
 }
 if(isset($_POST['ganty_payment'])){
-	// echo '<pre>';
-	// print_r($_POST);die;
-	
 	$lastid = $_SESSION['gantry_lasttext_id'];
 	$amt =  ($_POST['amount'])+($_POST['amount']*18/100);
 	$amount = $amt;
@@ -697,30 +690,23 @@ if(isset($_POST['ganty_payment'])){
 	      	      header('Location:home.php');
 		             $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
-
-		// $_SESSION['last_updated_id']=$lastid;
-		//  header('Location:payment_2.php');
-		// $_SESSION['msg']="Student Updated Successfully !!!";	
-	}
-	else{
+	      }
+	
+     }
+   else{
 		$_SESSION['msg']="Student Not Updated!!!";
 		echo "<script type='text/javascript'>window.location.href = 'gantry_preview.php';</script>";
 		// header("location:$_SERVER[HTTP_REFERER]");
+	 }
 	}
-}
 // ''''''''''''''''''''''Gantry Crane End''''''''''''''''''''''''''''''
 if(isset($_POST['jib_upload'])){
-		// echo '<pre>';
-		// print_r($_POST);
-		// print_r($_FILES);die;
-
-	      $comp_name = $_POST['comp_name'];
- 	      $address = $_POST['address'];
- 	      $country = $_POST['country'];
- 	      $state = $_POST['state'];
- 	      $dist = $_POST['dist'];
- 	      $other_country_details = $_POST['other_country_details'];
- 	   
+    $comp_name = $_POST['comp_name'];
+    $address = $_POST['address'];
+    $country = $_POST['country'];
+    $state = $_POST['state'];
+    $dist = $_POST['dist'];
+    $other_country_details = $_POST['other_country_details'];
 	 	$photo1 = $_FILES['file1']['name'];
 		$photo1 = explode('.',$photo1);
 		$image1= time().$photo1[0];
@@ -802,7 +788,8 @@ if(isset($_POST['jib_upload'])){
 }
 
 
-if(isset($_POST['jib_text'])){
+if(isset($_POST['jib_text']))
+{
 	// echo '<pre>';
 	// print_r($_POST);die;
 	$qry = "SELECT `id` FROM `myc_jibcrane` ORDER BY `id` DESC LIMIT 1";
@@ -865,33 +852,33 @@ if(isset($_POST['jib_text'])){
      }
      else{
      	$refno = 'REF-300';
-	$project_loc = $_POST['project_loc'];
-	$comp_name = $_POST['comp_name'];
-	$address = $_POST['address'];
-	$country = $_POST['country'];
-	$state = $_POST['state'];
-	$dist = $_POST['dist'];
-	$other_country_details = $_POST['other_country_details'];
-	$mainhost = $_POST['mainhost'];
-	$auxhoist = $_POST['auxhoist'];
-	$location = $_POST['location'];
-	$crane_type = $_POST['crane_type'];
-	$class_duty = $_POST['class_duty'];
-	$design_standered = $_POST['design_standered'];
-	$application = $_POST['application'];
-	$hoist_type = $_POST['hoist_type'];
-	$arm = $_POST['arm'];
-	$lifting_height = $_POST['lifting_height'];
-	$MH = $_POST['MH'];
-	$CT = $_POST['CT'];
-	$swivel = $_POST['swivel'];
-	$swivel_degree = $_POST['swivel_degree'];
-	$scope_supply = json_encode($_POST['scope_supply']);
-	$use_id =  json_decode($_COOKIE['Cookie'],true); 
-      $cust_id=$use_id['id'];
-	$installation = $_POST['installation'];
-	$other_remarks = $_POST['other_remarks'];
-	$query="INSERT INTO `myc_jibcrane`(`project_loc`,`comp_name`,`address`,`country`,`state`,`dist`,`other_country_details`,`mainhost`,`auxhoist`,`location`,`crane_type`,`class_duty`,`design_standered`,`application`,`hoist_type`,`arm`,`lifting_height`,`mh`,`ct`,`swivel`,`swivel_degree`,`scope_supply`,`cust_id`,`installation`,`other_remarks`,`refno`) VALUES ('$project_loc','$comp_name','$address','$country','$state','$dist','$other_country_details','$mainhost','$auxhoist','$location','$crane_type','$class_duty','$design_standered','$application','$hoist_type ','$arm','$lifting_height','$MH','$CT','$swivel','$swivel_degree','$scope_supply','$cust_id','$installation','$other_remarks','$refno')";
+			$project_loc = $_POST['project_loc'];
+			$comp_name = $_POST['comp_name'];
+			$address = $_POST['address'];
+			$country = $_POST['country'];
+			$state = $_POST['state'];
+			$dist = $_POST['dist'];
+			$other_country_details = $_POST['other_country_details'];
+			$mainhost = $_POST['mainhost'];
+			$auxhoist = $_POST['auxhoist'];
+			$location = $_POST['location'];
+			$crane_type = $_POST['crane_type'];
+			$class_duty = $_POST['class_duty'];
+			$design_standered = $_POST['design_standered'];
+			$application = $_POST['application'];
+			$hoist_type = $_POST['hoist_type'];
+			$arm = $_POST['arm'];
+			$lifting_height = $_POST['lifting_height'];
+			$MH = $_POST['MH'];
+			$CT = $_POST['CT'];
+			$swivel = $_POST['swivel'];
+			$swivel_degree = $_POST['swivel_degree'];
+			$scope_supply = json_encode($_POST['scope_supply']);
+			$use_id =  json_decode($_COOKIE['Cookie'],true); 
+		      $cust_id=$use_id['id'];
+			$installation = $_POST['installation'];
+			$other_remarks = $_POST['other_remarks'];
+			$query="INSERT INTO `myc_jibcrane`(`project_loc`,`comp_name`,`address`,`country`,`state`,`dist`,`other_country_details`,`mainhost`,`auxhoist`,`location`,`crane_type`,`class_duty`,`design_standered`,`application`,`hoist_type`,`arm`,`lifting_height`,`mh`,`ct`,`swivel`,`swivel_degree`,`scope_supply`,`cust_id`,`installation`,`other_remarks`,`refno`) VALUES ('$project_loc','$comp_name','$address','$country','$state','$dist','$other_country_details','$mainhost','$auxhoist','$location','$crane_type','$class_duty','$design_standered','$application','$hoist_type ','$arm','$lifting_height','$MH','$CT','$swivel','$swivel_degree','$scope_supply','$cust_id','$installation','$other_remarks','$refno')";
 	
 		$sql=mysqli_query($conn,$query);
 		$_SESSION['jib_lasttext_id']=$conn->insert_id;
@@ -915,8 +902,8 @@ if(isset($_POST['jib_text'])){
 			// header("Location:$_SERVER[HTTP_REFERER]");
 		}
 
-     }
-}
+   }
+ }
 if(isset($_POST['jib_payment'])){
 	// echo '<pre>';
 
