@@ -82,7 +82,7 @@ $name = "Customer of $custname - $orderno";
                                 <div class="form-row p-2">
                                     <div class="col-1 col-md-2"></div>
                                     <div class="col-10 col-md-8 text-center">
-                                        <form action='payment-success.php' id="razorpay-form" method="post">
+                                        <form action='payment-success.php' id="razorpay-form" method="POST">
                                         <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id" />
                                         <input type="hidden" name="payment_2" value="pay_2" />
 
