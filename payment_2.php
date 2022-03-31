@@ -95,7 +95,8 @@ $name = "Customer of $custname - $orderno";
                                         <input type="hidden" name="merchant_total" id="merchant_total" value="<?php echo $total; ?>"/>
                                         <input type="hidden" name="merchant_amount" id="merchant_amount" value="<?php echo $amount; ?>"/>
                                         <input type="hidden" name="order_id" id="order_id" value="<?php echo $merchant_order_id; ?>">
-                                        <input  id="submit-pay" type="submit" onclick="razorpaySubmits(this);" value="PAY NOW" class="btn btn-sm btn-warning" />
+                                        <input  >
+                                        <button id="submit-pay" onclick="razorpaySubmits(this);" value="PAY NOW" class="btn btn-sm btn-warning" />PAY NOW</button>
                                         <!-- <a href="payment_barcode.php" class="btn btn-sm btn-success">PAY NOW</a> -->
                                         </form>
                                     </div>
@@ -164,12 +165,24 @@ function random_number($l){
                 location.reload()
             }
         },
-        callback_url: 'https://app.craniumservices.in/payment-success.php/?'+razorpay_options,
+       //   var payment_2 = $('#payment_2').val();
+       // var merchant_order_id = $('#merchant_order_id').val();
+       // var merchant_trans_id = $('#merchant_trans_id').val();
+       // var merchant_product_info_id = $('#merchant_product_info_id').val();
+       // var merchant_surl_id = $('#merchant_surl_id').val();
+       // var merchant_furl_id = $('#merchant_furl_id').val();
+       // var card_holder_name_id = $('#card_holder_name_id').val();
+       // var merchant_total = $('#merchant_total').val();
+       // var merchant_amount = $('#merchant_amount').val();
+       // var order_id = order_id.val();
+
+        callback_url: 'https://app.craniumservices.in/payment-success.php',
     };
     var razorpay_submit_btn, razorpay_instance;
 
     function razorpaySubmits(el){
         debugger;
+      
         if(typeof Razorpay == 'undefined'){
         setTimeout(razorpaySubmits, 200);
         if(!razorpay_submit_btn && el){
