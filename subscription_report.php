@@ -66,12 +66,12 @@
             <!-- Single Notification-->
 
               <?php
-                  if(!empty($subscription)){
-                    foreach ($subscription as $key => $value) {
+                  if(!empty($subscription)){ $i=0;
+                    foreach ($subscription as $key => $value) {$i++;
                       ?>
                         <a class="list-group-item d-flex align-items-center"  href="Subscription-details.php?id='<?php echo $value['id'];?>'"><span class="noti-icon"><i class="lni lni-angle-double-right"></i></span>
                          <div class="noti-info">
-                            <h6 class="mb-0">Subscription report 1</h6>
+                            <h6 class="mb-0">Subscription report <?php echo $i;?></h6>
                          </div></a>
                       <?php
                     }
