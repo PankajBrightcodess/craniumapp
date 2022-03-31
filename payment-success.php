@@ -16,6 +16,7 @@ $msg = "";
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
       $payment_status = 1;
       $id = $_SESSION['last_updated_id'];
+      unset($_SESSION['last_updated_id']);  //new line form payment_slip.php
       $table = $_SESSION['tables'];
       $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`='$id'";
       $conn->query($sql);
@@ -52,7 +53,8 @@ $msg = "";
               <img src="https://img.icons8.com/ios-filled/50/000000/cloud-checked.png"/>
               <h3>Payment Successfull !!!</h3>
               <p style="color:green;">Your Payment has been Successfully Recieved !!!</p>
-              <a href="payment_slip.php" class="btn btn-success mt-2">Done</a>
+              <a href="subscription_report.php" class="btn btn-success mt-2">Done</a>
+              <!-- payment_slip.php -->
             </div>
           </div>
         </div>
