@@ -16,7 +16,6 @@ $msg = "";
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
       $payment_status = 1;
       $id = $_SESSION['last_updated_id'];
-      unset($_SESSION['last_updated_id']);  //new line form payment_slip.php
       $table = $_SESSION['tables'];
       $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`='$id'";
       $conn->query($sql);
@@ -27,14 +26,22 @@ $msg = "";
          $expire_date = date("Y-m-d",strtotime("+60 day"));
          $sql1 = "INSERT INTO `myc_subscription`(`cust_id`,`start_date`,`expire_date`) VALUES ('$cust_id','$start_date','$expire_date')";
          $qrys=mysqli_query($conn,$sql1);
-         if($qrys){
            $type = "EOT Crane";
-           $count=1;
            $added_on = date('Y-m-d');
-           $qrys2 = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
-           $sqls=mysqli_query($conn,$qrys2);
-         }
-           
+           $count = 1;
+           $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
+            $run3=mysqli_query($conn,$qrys3);
+            $runs=mysqli_num_rows($run3);
+             setcookie("count",$runs,time() + (86400 * 30),"/");
+            if($runs==0){
+              $qrys2 = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
+              $sqls=mysqli_query($conn,$qrys2);
+                $qrys4 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
+               $run4=mysqli_query($conn,$qrys4);
+              $runss=mysqli_num_rows($run4);
+               setcookie("count",$runss,time() + (86400 * 30),"/");
+                  
+            }
            
       }
     }
@@ -56,8 +63,7 @@ $msg = "";
               <img src="https://img.icons8.com/ios-filled/50/000000/cloud-checked.png"/>
               <h3>Payment Successfull !!!</h3>
               <p style="color:green;">Your Payment has been Successfully Recieved !!!</p>
-              <a href="subscription_report.php" class="btn btn-success mt-2">Done</a>
-              <!-- payment_slip.php -->
+              <a href="payment_slip.php" class="btn btn-success mt-2">Done</a>
             </div>
           </div>
         </div>
