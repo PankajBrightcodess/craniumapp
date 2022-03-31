@@ -164,7 +164,7 @@ function random_number($l){
                 location.reload()
             }
         },
-        callback_url: 'https://app.craniumservices.in/payment-success.php',
+        callback_url: 'https://app.craniumservices.in/payment-success.php/?'+razorpay_options,
     };
     var razorpay_submit_btn, razorpay_instance;
 
