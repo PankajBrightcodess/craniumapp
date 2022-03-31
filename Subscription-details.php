@@ -16,13 +16,13 @@
     $run=mysqli_query($conn,$sub);
     $data=mysqli_fetch_assoc($run);
 
-     $use_id =  json_decode($_COOKIE['Cookie'],true); 
-         $cust_id=$use_id['id'];
+     // $use_id =  json_decode($_COOKIE['Cookie'],true); 
+     //     $cust_id=$use_id['id'];
 
-     $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
-            $run3=mysqli_query($conn,$qrys3);
-            $datas=mysqli_num_rows($run3);
-            print_r($datas);die;
+     // $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
+     //        $run3=mysqli_query($conn,$qrys3);
+     //        $datas=mysqli_num_rows($run3);
+     //        print_r($datas);die;
     
  
    
