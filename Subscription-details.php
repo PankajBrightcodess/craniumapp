@@ -63,7 +63,7 @@
                   if(!empty($data)){
                     ?> <div class="col-12">
                 <p><strong><i> Your Subscription is valid from <?php echo date('d-m-Y',strtotime($data['start_date']));?> to <?php echo date('d-m-Y',strtotime($data['expire_date']));?>.</i></strong> </p>
-                <p><strong><i>And Your total Subscription is <?php if(!empty($_COOKIE['count'])){echo $_COOKIE['count'];}else echo '1'; ?>.</i></strong></p>
+                <p><strong><i>And Your total Subscription is <?php if($runs>=1){echo $runs;}?>.</i></strong></p>
               </div><?php
                   }
 
