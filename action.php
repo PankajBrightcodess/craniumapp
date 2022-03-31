@@ -675,7 +675,7 @@ if(isset($_POST['ganty_payment'])){
 	                // print_r($data);die;
 	                setcookie("count",$data,time() + (86400 * 30),"/");
 	                $count =$_COOKIE['count'];
-	                if($count>=6){
+	                if($count>=5){
 	                	setcookie("count",$data,time() - (86400 * 90),"/");
 	                	$qrys = "DELETE FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
 
@@ -943,7 +943,7 @@ if(isset($_POST['jib_payment'])){
 	                // print_r($data);die;
 	                setcookie("count",$data,time() + (86400 * 30),"/");
 	                $count =$_COOKIE['count'];
-	                if($count>=6){
+	                if($count>=5){
 	                	setcookie("count",$data,time() - (86400 * 90),"/");
 	                	$qrys = "DELETE FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
 
@@ -1262,7 +1262,7 @@ if(isset($_POST['electric_payment'])){
 	                // print_r($data);die;
 	                setcookie("count",$data,time() + (86400 * 30),"/");
 	                $count =$_COOKIE['count'];
-	                if($count>=6){
+	                if($count>=5){
 	                	setcookie("count",$data,time() - (86400 * 90),"/");
 	                	$qrys = "DELETE FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
 
