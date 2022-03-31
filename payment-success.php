@@ -27,21 +27,10 @@ $msg = "";
          $sql1 = "INSERT INTO `myc_subscription`(`cust_id`,`start_date`,`expire_date`) VALUES ('$cust_id','$start_date','$expire_date')";
          $qrys=mysqli_query($conn,$sql1);
            $type = "EOT Crane";
+           $count=1;
            $added_on = date('Y-m-d');
-           $count = 1;
-           $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
-            $run3=mysqli_query($conn,$qrys3);
-            $runs=mysqli_num_rows($run3);
-             setcookie("count",$runs,time() + (86400 * 30),"/");
-            if($runs==0){
-              $qrys2 = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
-              $sqls=mysqli_query($conn,$qrys2);
-                $qrys4 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
-               $run4=mysqli_query($conn,$qrys4);
-              $runss=mysqli_num_rows($run4);
-               setcookie("count",$runss,time() + (86400 * 30),"/");
-                $count =$_COOKIE['count'];
-            }
+           $qrys2 = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
+           $sqls=mysqli_query($conn,$qrys2);
            
       }
     }
