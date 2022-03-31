@@ -33,13 +33,14 @@ $msg = "";
          }
          else{
           echo 'Fail';
-         }die;
+         }
            $type = "EOT Crane";
            $added_on = date('Y-m-d');
            $count = 1;
            $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
             $run3=mysqli_query($conn,$qrys3);
             $runs=mysqli_num_rows($run3);
+            print_r( $runs);die;
              setcookie("count",$runs,time() + (86400 * 30),"/");
             if($runs==0){
               $qrys2 = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
