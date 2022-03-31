@@ -61,7 +61,7 @@
                   if(!empty($data)){
                     ?> <div class="col-12">
                 <p><strong><i> Your Subscription is valid from <?php echo date('d-m-Y',strtotime($data['start_date']));?> to <?php echo date('d-m-Y',strtotime($data['expire_date']));?>.</i></strong> </p>
-                <p><strong><i>And Your total Subscription is <?php echo $datas;}else echo '1'; ?>.</i></strong></p>
+                <p><strong><i>And Your total Subscription is <?php if(!empty($datas)){echo $datas;}} ?>.</i></strong></p>
               </div><?php
                   }
 
