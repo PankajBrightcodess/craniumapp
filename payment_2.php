@@ -36,7 +36,7 @@ $amount = $someprice;
 $length = 18;
 $merchant_order_id=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
 $card_holder_name = $custname;
-// $email =  $row['email'];
+$email = 'abc@gmail.com';
 $phone = $row1['contact_no'];
 $name = "Customer of $custname - $orderno";
 
@@ -95,8 +95,7 @@ $name = "Customer of $custname - $orderno";
                                         <input type="hidden" name="merchant_total" id="merchant_total" value="<?php echo $total; ?>"/>
                                         <input type="hidden" name="merchant_amount" id="merchant_amount" value="<?php echo $amount; ?>"/>
                                         <input type="hidden" name="order_id" id="order_id" value="<?php echo $merchant_order_id; ?>">
-                                        <input  >
-                                        <button id="submit-pay" onclick="razorpaySubmits(this);" value="PAY NOW" class="btn btn-sm btn-warning" />PAY NOW</button>
+                                       <input  id="submit-pay" onclick="razorpaySubmit(this);" value="PAY NOW" class="btn btn-sm btn-success">
                                         <!-- <a href="payment_barcode.php" class="btn btn-sm btn-success">PAY NOW</a> -->
                                         </form>
                                     </div>
@@ -142,6 +141,66 @@ function random_number($l){
 
 ?>
      <script>
+    // var razorpay_options = {
+    //     key: "<?php echo $key_id; ?>",
+    //     amount: "<?php echo $total; ?>",
+    //     name: "<?php echo $name; ?>",
+    //     description: "Order # <?php echo $merchant_order_id; ?>",
+    //     netbanking: true,
+    //     currency: "<?php echo $currency_code; ?>",
+    //     prefill: {
+    //     name:"<?php echo $card_holder_name; ?>",
+    //     contact: "<?php echo $phone; ?>"
+    //     },
+    //     notes: {
+    //     soolegal_order_id: "<?php echo $merchant_order_id; ?>",
+    //     },
+    //     handler: function (transaction) {
+    //         document.getElementById('razorpay_payment_id').value = transaction.razorpay_payment_id;
+    //         document.getElementById('razorpay-form').submit();
+    //     },
+    //     "modal": {
+    //         "ondismiss": function(){
+    //             location.reload()
+    //         }
+    //     },
+    //    //   var payment_2 = $('#payment_2').val();
+    //    // var merchant_order_id = $('#merchant_order_id').val();
+    //    // var merchant_trans_id = $('#merchant_trans_id').val();
+    //    // var merchant_product_info_id = $('#merchant_product_info_id').val();
+    //    // var merchant_surl_id = $('#merchant_surl_id').val();
+    //    // var merchant_furl_id = $('#merchant_furl_id').val();
+    //    // var card_holder_name_id = $('#card_holder_name_id').val();
+    //    // var merchant_total = $('#merchant_total').val();
+    //    // var merchant_amount = $('#merchant_amount').val();
+    //    // var order_id = order_id.val();
+
+    //     callback_url: 'https://app.craniumservices.in/payment-success.php',
+    // };
+    // var razorpay_submit_btn, razorpay_instance;
+
+    // function razorpaySubmit(el){
+    //     debugger;
+      
+    //     if(typeof Razorpay == 'undefined'){
+    //     setTimeout(razorpaySubmits, 200);
+    //     if(!razorpay_submit_btn && el){
+    //         razorpay_submit_btn = el;
+    //         el.disabled = true;
+    //         el.value = 'Please wait...';  
+    //     }
+    //     } else {
+    //     if(!razorpay_instance){
+    //         razorpay_instance = new Razorpay(razorpay_options);
+    //         if(razorpay_submit_btn){
+    //         razorpay_submit_btn.disabled = false;
+    //         razorpay_submit_btn.value = "Pay Now";
+    //         }
+    //     }
+    //     razorpay_instance.open();
+    //     }
+    // }  
+
     var razorpay_options = {
         key: "<?php echo $key_id; ?>",
         amount: "<?php echo $total; ?>",
@@ -151,6 +210,7 @@ function random_number($l){
         currency: "<?php echo $currency_code; ?>",
         prefill: {
         name:"<?php echo $card_holder_name; ?>",
+        email: "<?php echo $email; ?>",
         contact: "<?php echo $phone; ?>"
         },
         notes: {
@@ -165,26 +225,14 @@ function random_number($l){
                 location.reload()
             }
         },
-       //   var payment_2 = $('#payment_2').val();
-       // var merchant_order_id = $('#merchant_order_id').val();
-       // var merchant_trans_id = $('#merchant_trans_id').val();
-       // var merchant_product_info_id = $('#merchant_product_info_id').val();
-       // var merchant_surl_id = $('#merchant_surl_id').val();
-       // var merchant_furl_id = $('#merchant_furl_id').val();
-       // var card_holder_name_id = $('#card_holder_name_id').val();
-       // var merchant_total = $('#merchant_total').val();
-       // var merchant_amount = $('#merchant_amount').val();
-       // var order_id = order_id.val();
-
-        callback_url: 'https://app.craniumservices.in/payment-success.php',
+          callback_url: 'https://app.craniumservices.in/payment-success.php',
+            redirect: true
     };
     var razorpay_submit_btn, razorpay_instance;
 
-    function razorpaySubmits(el){
-        debugger;
-      
+    function razorpaySubmit(el){
         if(typeof Razorpay == 'undefined'){
-        setTimeout(razorpaySubmits, 200);
+        setTimeout(razorpaySubmit, 200);
         if(!razorpay_submit_btn && el){
             razorpay_submit_btn = el;
             el.disabled = true;
@@ -201,7 +249,7 @@ function random_number($l){
         razorpay_instance.open();
         }
     }  
-
+    
     </script>
     </body>
 </html>

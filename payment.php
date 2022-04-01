@@ -26,7 +26,7 @@ $amount = $someprice;
 $length = 18;
 $merchant_order_id=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
 $card_holder_name = $custname;
-// $email =  $row['email'];
+$email =  'abs@gmail.com';
 $phone = $row['contact'];
 $name = "Customer of $custname - $orderno";
 
@@ -125,8 +125,6 @@ function random_number($l){
 		}
 		return $randstring;
 	}
-
-
 ?>
      <script>
     var razorpay_options = {
@@ -138,7 +136,8 @@ function random_number($l){
         currency: "<?php echo $currency_code; ?>",
         prefill: {
         name:"<?php echo $card_holder_name; ?>",
-        contact: "<?php echo $phone; ?>"
+        contact: "<?php echo $phone; ?>",
+        email: "<?php echo $email; ?>"
         },
         notes: {
         soolegal_order_id: "<?php echo $merchant_order_id; ?>",
