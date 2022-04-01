@@ -84,7 +84,6 @@ $name = "Customer of $custname - $orderno";
                                     <div class="col-10 col-md-8 text-center">
                                         <form action='payment-success.php' id="razorpay-form" method="POST">
                                         <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id" />
-                                        <input type="hidden" name="payment_2" value="pay_2" />
 
                                         <input type="hidden" name="merchant_order_id" id="merchant_order_id" value="<?php echo $merchant_order_id; ?>"/>
                                         <input type="hidden" name="merchant_trans_id" id="merchant_trans_id" value="<?php echo $txnid; ?>"/>
@@ -210,8 +209,8 @@ function random_number($l){
         currency: "<?php echo $currency_code; ?>",
         prefill: {
         name:"<?php echo $card_holder_name; ?>",
-        email: "<?php echo $email; ?>",
-        contact: "<?php echo $phone; ?>"
+        contact: "<?php echo $phone; ?>",
+        email: "<?php echo $email; ?>"
         },
         notes: {
         soolegal_order_id: "<?php echo $merchant_order_id; ?>",
@@ -225,8 +224,7 @@ function random_number($l){
                 location.reload()
             }
         },
-          callback_url: 'https://app.craniumservices.in/payment-success.php',
-            redirect: true
+          callback_url: 'https://app.craniumservices.in/payment-success.php'
     };
     var razorpay_submit_btn, razorpay_instance;
 

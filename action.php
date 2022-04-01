@@ -258,7 +258,7 @@ if(isset($_POST['eotcrane_text'])){
 	$data=mysqli_fetch_assoc($run);
 	if(!empty($data)){
 		$refno = 'REF-100'.$data['id'];
-		$project_loc = $_POST['project_loc'];
+		// $project_loc = $_POST['project_loc'];
 		$comp_name = $_POST['comp_name'];
 		$address = $_POST['address'];
 		$country = $_POST['country'];
@@ -287,9 +287,9 @@ if(isset($_POST['eotcrane_text'])){
 		$scope_supply = json_encode($_POST['scope_supply']);
 		$installation = $_POST['installation'];
 		$other_remarks = $_POST['other_remarks'];
-		echo "<pre>";print_r($_POST)
-		;die;
-		$query="INSERT INTO `myc_eotrequestform`(`project_loc`,`comp_name`,`address`,`country`,`state`,`dist`,`other_country_details`,`mainhost`,`auxhoist`,`location`,`crane_type`,`class_duty`,`design_standered`,`application`,`span`,`abv_floor_mh`,`blw_floor_ah`,`travel_length`,`column_to_column`,`speed_mh`,`speed_ah`,`speed_ct`,`speed_lt`,`cust_id`,`vfd`,`scope_supply`,`installation`,`other_remarks`,`refno`,`added_on`) VALUES ('$project_loc','$comp_name','$address','$country','$state','$dist','$other_country_details
+		// echo "<pre>";print_r($_POST)
+		// ;die;
+		$query="INSERT INTO `myc_eotrequestform`(`comp_name`,`address`,`country`,`state`,`dist`,`other_country_details`,`mainhost`,`auxhoist`,`location`,`crane_type`,`class_duty`,`design_standered`,`application`,`span`,`abv_floor_mh`,`blw_floor_ah`,`travel_length`,`column_to_column`,`speed_mh`,`speed_ah`,`speed_ct`,`speed_lt`,`cust_id`,`vfd`,`scope_supply`,`installation`,`other_remarks`,`refno`,`added_on`) VALUES ('$comp_name','$address','$country','$state','$dist','$other_country_details
 			','$mainhost','$auxhoist','$location','$crane_type','$class_duty','$design_standered','$application','$span','$abv_floor_mh','$blw_floor_ah','$travel_length','$column_to_column','$speed_mh','$speed_ah','$speed_ct','$speed_lt','$cust_id','$vfd','$scope_supply','$installation','$other_remarks','$refno','$added_on')";
 			$sql=mysqli_query($conn,$query);
 			$_SESSION['eotcrane_lasttext_id']=$conn->insert_id; 
