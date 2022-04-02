@@ -9,9 +9,37 @@ $msg = "";
     if ($msg != "") {
         echo "<script> alert('$msg')</script>";
     }
-    echo '<pre>';print_r($_POST);die;
+    echo '<pre>';
+    $sql = "SELECT * FROM ".$_SESSION['tables']." WHERE id = '$_SESSION[last_updated_id]'";
+    $res = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($res);
+    $length = 18;
+    $merchant_order_id=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
+    $merchant_trans_id= time();
+    $merchant_product_info_id = 'Payment for Admission';
+    $merchant_surl_id = 'payment-success.php';
+    $merchant_furl_id = 'payment-success.php';
+    $card_holder_name_id =$row['comp_name'];
+    $someprice = $row['amount'];  
+    $paisaprice = $someprice*100;
+    $total = $paisaprice;
+    $amount = $row['amount'];
+    $order_id = $merchant_order_id;
+    $finaldata['merchant_trans_id'] = $merchant_trans_id;
+    $finaldata['merchant_product_info_id'] = $merchant_product_info_id;
+    $finaldata['merchant_surl_id'] = $merchant_surl_id;
+    $finaldata['merchant_furl_id'] = $merchant_furl_id;
+    $finaldata['card_holder_name_id'] = $card_holder_name_id;
+    $finaldata['someprice'] = $someprice;
+    $finaldata['total'] = $total;
+    $finaldata['amount'] = $amount;
+    $finaldata['order_id'] = $order_id;
+    print_r($finaldata);
+    // print_r($row);
+    print_r($_POST);die;
+
       if(isset($_POST['razorpay_payment_id'])){
-      $payment_details=json_encode($_POST);
+      $payment_details=json_encode($finaldata);
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
       $payment_status = 1;
       $id = $_SESSION['last_updated_id'];
