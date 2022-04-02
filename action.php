@@ -374,14 +374,13 @@ if(isset($_POST['eot_payment'])){
 	$lastid = $_SESSION['eotcrane_lasttext_id'];
 	$amt =  ($_POST['amount'])+($_POST['amount']*18/100);
 	$amount =1;
-	// ;
 	$length = 15;
 	 $order_no=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
 	 $added_on = date('Y-m-d');
 	 // print_r($data);die;
 	  $query="UPDATE `myc_eotrequestform` SET `amount`='$amount',`order_no`='$order_no'  WHERE `id`='$lastid'";
-	$run=mysqli_query($conn,$query);
-	$_SESSION['tables'] = 'myc_eotrequestform';
+	  $run=mysqli_query($conn,$query);
+	  $_SESSION['tables'] = 'myc_eotrequestform';
 	if($run){
 		// ''''''''''''subscription check''''''''''''''''
 		$use_id =  json_decode($_COOKIE['Cookie'],true); 
@@ -414,7 +413,7 @@ if(isset($_POST['eot_payment'])){
 
 	                	$run=mysqli_query($conn,$qrys);
 	                	$_SESSION['last_updated_id']=$lastid;
-			      echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
+			           echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
 		            header('location:payment_2.php');
 		            $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
