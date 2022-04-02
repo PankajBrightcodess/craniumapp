@@ -373,7 +373,7 @@ if(isset($_POST['eot_payment'])){
 	
 	$lastid = $_SESSION['eotcrane_lasttext_id'];
 	$amt =  ($_POST['amount'])+($_POST['amount']*18/100);
-	$amount =$amt;
+	$amount =1;
 	// ;
 	$length = 15;
 	 $order_no=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
@@ -419,7 +419,7 @@ if(isset($_POST['eot_payment'])){
 		            $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 	                else{
-	                	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
+	                	echo "<script type='text/javascript'>window.location.href = 'subscription_report.php';</script>";
 	      	      header('location:home.php');
 		             $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
@@ -688,8 +688,8 @@ if(isset($_POST['ganty_payment'])){
 		            $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 	                else{
-	                	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
-	      	      header('location:home.php');
+	                	echo "<script type='text/javascript'>window.location.href = 'subscription_report.php';</script>";
+	      	      header('location:subscription_report.php');
 		             $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 	      }
@@ -956,8 +956,8 @@ if(isset($_POST['jib_payment'])){
 		            $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 	                else{
-	                	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
-	      	      header('location:home.php');
+	                	echo "<script type='text/javascript'>window.location.href = 'subscription_report.php';</script>";
+	      	      header('location:subscription_report.php');
 		             $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 
@@ -1275,8 +1275,8 @@ if(isset($_POST['electric_payment'])){
 		            $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 	                else{
-	                	echo "<script type='text/javascript'>window.location.href = 'home.php';</script>";
-	      	      header('location:home.php');
+	                	echo "<script type='text/javascript'>window.location.href = 'subscription_report.php';</script>";
+	      	      header('location:subscription_report.php');
 		             $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 
