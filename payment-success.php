@@ -15,7 +15,7 @@ $msg = "";
     $sql = "SELECT * FROM $tables  WHERE `id` = $ids";
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($res);
-    print_r($row);
+    // print_r($row);
     $length = 18;
     $merchant_order_id=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
     $merchant_trans_id= time();
@@ -69,12 +69,13 @@ $msg = "";
             $added_on = date('Y-m-d');
             $count = 1;
             $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
-            // print_r($qrys3);die;
+            
             $run3=mysqli_query($conn,$qrys3);
             $runs=mysqli_num_rows($run3);
              setcookie("count",$runs,time() + (86400 * 30),"/");
             if($runs==0){
               $qrys2 = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
+              print_r($qrys2);
               $sqls=mysqli_query($conn,$qrys2);
               print_r($sqls);die;
                 $qrys4 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
