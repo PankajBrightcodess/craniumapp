@@ -11,8 +11,7 @@ $msg = "";
     }
     $ids = $_SESSION['last_updated_id'];
     $tables = $_SESSION['tables'];
-     echo '<pre>';
-     print_r($_SESSION['last_updated_id']);die;
+    
     $sql = "SELECT * FROM $tables  WHERE `id` = '$ids'";
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($res);
@@ -46,7 +45,8 @@ $msg = "";
     $finaldata['razorpay_payment_id'] = $_POST['razorpay_payment_id']; 
     print_r( $finaldata);
       if(isset($_POST['razorpay_payment_id'])){
-
+        echo '<pre>';
+         print_r($_SESSION['last_updated_id']);die;
       $payment_details=json_encode($finaldata);
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
       $payment_status = 1;
