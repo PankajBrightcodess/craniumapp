@@ -50,7 +50,7 @@ $msg = "";
       
       $table = $_SESSION['tables'];
       $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`='$sessionid'";
-      print_r($sql);
+      print_r($sql);die;
       $rslt = $conn->query($sql);
       unset($_SESSION['last_updated_id']);
      
