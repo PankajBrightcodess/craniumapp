@@ -15,7 +15,7 @@ $msg = "";
     $sql = "SELECT * FROM $tables  WHERE `id` = '$ids'";
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($res);
-    print_r($row);die;
+    // print_r($row);die;
     $length = 18;
     $merchant_order_id=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
     $merchant_trans_id= time();
@@ -43,7 +43,7 @@ $msg = "";
     $finaldata['amount'] = $amount;
     $finaldata['order_id'] = $order_id;
     $finaldata['razorpay_payment_id'] = $_POST['razorpay_payment_id']; 
-    print_r( $finaldata);
+    // print_r( $finaldata);
       if(isset($_POST['razorpay_payment_id'])){
         echo '<pre>';
          print_r($_SESSION['last_updated_id']);die;
