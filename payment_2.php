@@ -7,6 +7,7 @@ include'connection.php';
  // print_r($sql);die;
 $res = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($res);
+$_SESSION['payment_2'] = 'pay_2';
 
 $custid = $row['cust_id'];
 $sql1 = "SELECT * FROM myc_customer WHERE id = '$custid'";

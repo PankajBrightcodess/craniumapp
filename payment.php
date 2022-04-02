@@ -74,7 +74,7 @@ $name = "Customer of $custname - $orderno";
                                     <div class="col-10 col-md-8 text-center">
                                         <form action='payment-success.php' id="razorpay-form" method="post">
                                         <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id" />
-                                        <input type="hidden" name="merchant_order_id" id="merchant_order_id" value="<?php echo $merchant_order_id; ?>"/>
+                                       <!--  <input type="hidden" name="merchant_order_id" id="merchant_order_id" value="<?php echo $merchant_order_id; ?>"/>
                                         <input type="hidden" name="merchant_trans_id" id="merchant_trans_id" value="<?php echo $txnid; ?>"/>
                                         <input type="hidden" name="merchant_product_info_id" id="merchant_product_info_id" value="<?php echo $productinfo; ?>"/>
                                         <input type="hidden" name="merchant_surl_id" id="merchant_surl_id" value="<?php echo $surl; ?>"/>
@@ -82,7 +82,7 @@ $name = "Customer of $custname - $orderno";
                                         <input type="hidden" name="card_holder_name_id" id="card_holder_name_id" value="<?php echo $card_holder_name; ?>"/>
                                         <input type="hidden" name="merchant_total" id="merchant_total" value="<?php echo $total; ?>"/>
                                         <input type="hidden" name="merchant_amount" id="merchant_amount" value="<?php echo $amount; ?>"/>
-                                        <input type="hidden" name="order_id" id="order_id" value="<?php echo $merchant_order_id; ?>">
+                                        <input type="hidden" name="order_id" id="order_id" value="<?php echo $merchant_order_id; ?>"> -->
                                         <input  id="submit-pay" type="button" onclick="razorpaySubmit(this);" value="PAY NOW" class="btn btn-sm btn-warning" />
                                         <!-- <a href="payment_barcode.php" class="btn btn-sm btn-success">PAY NOW</a> -->
                                         </form>

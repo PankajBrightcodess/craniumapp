@@ -19,7 +19,12 @@ $msg = "";
     $merchant_product_info_id = 'Payment for Admission';
     $merchant_surl_id = 'payment-success.php';
     $merchant_furl_id = 'payment-success.php';
-    $card_holder_name_id =$row['comp_name'];
+    if(!empty($row['comp_name'])){
+      $card_holder_name_id =$row['comp_name'];
+    }
+    if(!empty($row['company_name'])){
+      $card_holder_name_id =$row['company_name'];
+    }
     $someprice = $row['amount'];  
     $paisaprice = $someprice*100;
     $total = $paisaprice;
@@ -35,10 +40,6 @@ $msg = "";
     $finaldata['amount'] = $amount;
     $finaldata['order_id'] = $order_id;
     $finaldata['razorpay_payment_id'] = $_POST['razorpay_payment_id']; 
-    print_r($finaldata);
-    // print_r($row);
-    print_r($_POST);die;
-
       if(isset($_POST['razorpay_payment_id'])){
       $payment_details=json_encode($finaldata);
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
@@ -48,17 +49,14 @@ $msg = "";
       $table = $_SESSION['tables'];
       $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`='$id'";
       $conn->query($sql);
-      if(!empty($_POST['payment_2'])){
+      if(!empty($_SESSION['payment_2'])){
+        unset($_SESSION['payment_2']);
          $use_id =  json_decode($_COOKIE['Cookie'],true); 
          $cust_id=$use_id['id'];
          $start_date = date('Y-m-d');
          $expire_date = date("Y-m-d",strtotime("+60 day"));
          $sql1 = "INSERT INTO `myc_subscription`(`cust_id`,`start_date`,`expire_date`) VALUES ('$cust_id','$start_date','$expire_date')";
-         $a = 1;
-         print_r($a);die;
-         print_r($sql1);
          $qrys=mysqli_query($conn,$sql1);
-         print_r($qrys);die;
          if($qrys){
             $type = "EOT Crane";
             $added_on = date('Y-m-d');
@@ -77,10 +75,6 @@ $msg = "";
                   
             }
          }
-         else{
-          echo 'fail';
-         }  
-         die;
       }
     }
 ?>
