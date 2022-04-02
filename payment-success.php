@@ -9,6 +9,7 @@ $msg = "";
     if ($msg != "") {
         echo "<script> alert('$msg')</script>";
     }
+     echo '<pre>';
     $sql = "SELECT * FROM ".$_SESSION['tables']." WHERE id = '$_SESSION[last_updated_id]'";
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($res);
@@ -39,6 +40,7 @@ $msg = "";
     $finaldata['amount'] = $amount;
     $finaldata['order_id'] = $order_id;
     $finaldata['razorpay_payment_id'] = $_POST['razorpay_payment_id']; 
+    print_r( $finaldata);
       if(isset($_POST['razorpay_payment_id'])){
       $payment_details=json_encode($finaldata);
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
@@ -47,8 +49,9 @@ $msg = "";
       unset($_SESSION['last_updated_id']);
       $table = $_SESSION['tables'];
       $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`='$id'";
+      print_r($sql);
       $rslt = $conn->query($sql);
-      echo '<pre>';
+     
       print_r($rslt);
       if(!empty($_SESSION['payment_2'])){
         unset($_SESSION['payment_2']);
@@ -57,6 +60,7 @@ $msg = "";
          $start_date = date('Y-m-d');
          $expire_date = date("Y-m-d",strtotime("+60 day"));
          $sql1 = "INSERT INTO `myc_subscription`(`cust_id`,`start_date`,`expire_date`) VALUES ('$cust_id','$start_date','$expire_date')";
+         print_r($sql1);
          $qrys=mysqli_query($conn,$sql1);
          print_r( $qrys);
          if($qrys){
@@ -64,6 +68,7 @@ $msg = "";
             $added_on = date('Y-m-d');
             $count = 1;
             $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
+            print_r($qrys3);
             $run3=mysqli_query($conn,$qrys3);
             $runs=mysqli_num_rows($run3);
              setcookie("count",$runs,time() + (86400 * 30),"/");
@@ -72,6 +77,7 @@ $msg = "";
               $sqls=mysqli_query($conn,$qrys2);
               print_r($sqls);
                 $qrys4 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
+                print_r($qrys4);
                $run4=mysqli_query($conn,$qrys4);
               $runss=mysqli_num_rows($run4);
                setcookie("count",$runss,time() + (86400 * 30),"/");
