@@ -227,7 +227,7 @@ function random_number($l){
                 location.reload()
             }
         },
-          callback_url: 'https://app.craniumservices.in/payment-success.php'
+          callback_url: 'https://app.craniumservices.in/payment-success.php',
     };
     var razorpay_submit_btn, razorpay_instance;
 
