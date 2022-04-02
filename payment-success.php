@@ -12,7 +12,7 @@ $msg = "";
     $ids = $_SESSION['last_updated_id'];
     $tables = $_SESSION['tables'];
     
-    $sql = "SELECT * FROM $tables  WHERE `id` = '$ids'";
+    $sql = "SELECT * FROM $tables  WHERE `id` = $ids";
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($res);
     print_r($row);
