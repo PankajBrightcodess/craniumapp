@@ -373,7 +373,7 @@ if(isset($_POST['eot_payment'])){
 	
 	$lastid = $_SESSION['eotcrane_lasttext_id'];
 	$amt =  ($_POST['amount'])+($_POST['amount']*18/100);
-	$amount =1;
+	$amount =$amt;
 	$length = 15;
 	 $order_no=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
 	 $added_on = date('Y-m-d');
@@ -407,7 +407,7 @@ if(isset($_POST['eot_payment'])){
 	                // print_r($data);die;
 	                setcookie("count",$data,time() + (86400 * 30),"/");
 	                $count =$_COOKIE['count'];
-	                if($count>=1){
+	                if($count>=5){
 	                	setcookie("count",$data,time() - (86400 * 90),"/");
 	                	$qrys = "DELETE FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
 
