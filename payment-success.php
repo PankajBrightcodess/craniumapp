@@ -12,6 +12,7 @@ $msg = "";
     $cust_id=$_SESSION['user_id'];
     $ids = $_SESSION['last_updated_id'];
     $tables = $_SESSION['tables'];
+    print_r($cust_id);die;
     echo '<pre>';
     $sql = "SELECT * FROM $tables  WHERE `id` = $ids";
     $res = mysqli_query($conn, $sql);
