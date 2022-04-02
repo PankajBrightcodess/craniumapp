@@ -56,10 +56,10 @@ $msg = "";
       $table = $_SESSION['tables'];
       $ids = $_SESSION['last_updated_id'];
       $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`=$sessionid";
-      print_r($sql);
+      // print_r($sql);
       $rslt = $conn->query($sql);
           
-      print_r($rslt);die;
+      // print_r($rslt);die;
       if(!empty($_SESSION['payment_2'])){
         unset($_SESSION['payment_2']);
          $use_id =  json_decode($_COOKIE['Cookie'],true); 
@@ -69,7 +69,7 @@ $msg = "";
          $sql1 = "INSERT INTO `myc_subscription`(`cust_id`,`start_date`,`expire_date`) VALUES ('$cust_id','$start_date','$expire_date')";
          print_r($sql1);
          $qrys=mysqli_query($conn,$sql1);
-         print_r( $qrys);
+         print_r( $qrys);die;
          if($qrys){
             $type = "EOT Crane";
             $added_on = date('Y-m-d');
