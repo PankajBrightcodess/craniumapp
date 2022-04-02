@@ -407,7 +407,7 @@ if(isset($_POST['eot_payment'])){
 	                // print_r($data);die;
 	                setcookie("count",$data,time() + (86400 * 30),"/");
 	                $count =$_COOKIE['count'];
-	                if($count>=1){
+	                if($count>=5){
 	                	setcookie("count",$data,time() - (86400 * 90),"/");
 	                	$qrys = "DELETE FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
 
