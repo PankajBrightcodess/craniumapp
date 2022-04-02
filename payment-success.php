@@ -47,7 +47,9 @@ $msg = "";
       unset($_SESSION['last_updated_id']);
       $table = $_SESSION['tables'];
       $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`='$id'";
-      $conn->query($sql);
+      $rslt = $conn->query($sql);
+      echo '<pre>';
+      print_r($rslt);
       if(!empty($_SESSION['payment_2'])){
         unset($_SESSION['payment_2']);
          $use_id =  json_decode($_COOKIE['Cookie'],true); 
@@ -56,6 +58,7 @@ $msg = "";
          $expire_date = date("Y-m-d",strtotime("+60 day"));
          $sql1 = "INSERT INTO `myc_subscription`(`cust_id`,`start_date`,`expire_date`) VALUES ('$cust_id','$start_date','$expire_date')";
          $qrys=mysqli_query($conn,$sql1);
+         print_r( $qrys);
          if($qrys){
             $type = "EOT Crane";
             $added_on = date('Y-m-d');
@@ -67,6 +70,7 @@ $msg = "";
             if($runs==0){
               $qrys2 = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
               $sqls=mysqli_query($conn,$qrys2);
+              print_r($sqls);
                 $qrys4 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
                $run4=mysqli_query($conn,$qrys4);
               $runss=mysqli_num_rows($run4);
@@ -74,7 +78,7 @@ $msg = "";
                   
             }
          }
-      }
+      }die;
     }
 ?>
 <!doctype html>
