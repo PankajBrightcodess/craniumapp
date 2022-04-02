@@ -45,7 +45,7 @@ $msg = "";
       $payment_details=json_encode($finaldata);
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
       $payment_status = 1;
-      $sessionid = $_SESSION['last_updated_id'];
+      $sessionid = $_SESSION[last_updated_id];
       print_r($sessionid);
       
       $table = $_SESSION['tables'];
