@@ -10,6 +10,7 @@ $msg = "";
         echo "<script> alert('$msg')</script>";
     }
      echo '<pre>';
+     print_r($_SESSION['last_updated_id']);die;
     $sql = "SELECT * FROM ".$_SESSION['tables']." WHERE id = '$_SESSION[last_updated_id]'";
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($res);
