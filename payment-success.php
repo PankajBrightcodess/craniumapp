@@ -51,15 +51,15 @@ $msg = "";
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
       $payment_status = 1;
       $sessionid = $_SESSION['last_updated_id'];
-      print_r($sessionid);die;
+      // print_r($sessionid);die;
       
       $table = $_SESSION['tables'];
       $ids = $_SESSION['last_updated_id'];
-      $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`=$ids";
-      print_r($sql);die;
+      $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`=$sessionid";
+      print_r($sql);
       $rslt = $conn->query($sql);
           
-      print_r($rslt);
+      print_r($rslt);die;
       if(!empty($_SESSION['payment_2'])){
         unset($_SESSION['payment_2']);
          $use_id =  json_decode($_COOKIE['Cookie'],true); 
