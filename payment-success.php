@@ -46,15 +46,14 @@ $msg = "";
       $payment_details=json_encode($finaldata);
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
       $payment_status = 1;
-      $sessionid = $_SESSION[last_updated_id];
-      print_r($sessionid);
+      // $sessionid = $_SESSION['last_updated_id'];
+      // print_r($sessionid);
       
       $table = $_SESSION['tables'];
-      $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`=$sessionid";
+      $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`=$_SESSION['last_updated_id']";
       print_r($sql);die;
       $rslt = $conn->query($sql);
-      unset($_SESSION['last_updated_id']);
-     
+          
       print_r($rslt);
       if(!empty($_SESSION['payment_2'])){
         unset($_SESSION['payment_2']);
