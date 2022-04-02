@@ -3,11 +3,12 @@ session_start();
 
 include'connection.php';
         // $table = $_SESSION['tables'];  
-        print_r($_SESSION['eotcrane_lasttext_id']);die;  
+        // print_r($_SESSION['eotcrane_lasttext_id']);die;  
  $sql = "SELECT * FROM ".$_SESSION['tables']." WHERE id = '$_SESSION[last_updated_id]'";
  // print_r($sql);die;
 $res = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($res);
+print_r($row);die;
 $_SESSION['payment_2'] = 'pay_2';
 
 $custid = $row['cust_id'];
