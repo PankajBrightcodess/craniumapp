@@ -34,6 +34,7 @@ $msg = "";
     $finaldata['total'] = $total;
     $finaldata['amount'] = $amount;
     $finaldata['order_id'] = $order_id;
+    $finaldata['razorpay_payment_id'] = $_POST['razorpay_payment_id']; 
     print_r($finaldata);
     // print_r($row);
     print_r($_POST);die;
