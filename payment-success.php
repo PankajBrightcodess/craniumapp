@@ -9,11 +9,14 @@ $msg = "";
     if ($msg != "") {
         echo "<script> alert('$msg')</script>";
     }
+    $ids = $_SESSION['last_updated_id'];
+    $tables = $_SESSION['tables'];
      echo '<pre>';
-     print_r($_SESSION[last_updated_id]);die;
-    $sql = "SELECT * FROM '.$_SESSION['tables'].' WHERE `id` = '$_SESSION[last_updated_id]'";
+     print_r($_SESSION['last_updated_id']);die;
+    $sql = "SELECT * FROM $tables  WHERE `id` = '$ids'";
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($res);
+    print_r($row);die;
     $length = 18;
     $merchant_order_id=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
     $merchant_trans_id= time();
@@ -51,7 +54,8 @@ $msg = "";
       print_r($sessionid);die;
       
       $table = $_SESSION['tables'];
-      $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`=$_SESSION['last_updated_id']";
+      $ids = $_SESSION['last_updated_id'];
+      $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`=$ids";
       print_r($sql);die;
       $rslt = $conn->query($sql);
           
