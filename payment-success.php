@@ -46,6 +46,7 @@ $msg = "";
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
       $payment_status = 1;
       $sessionid = $_SESSION['last_updated_id'];
+      print_r($sessionid);
       
       $table = $_SESSION['tables'];
       $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`='$sessionid'";
