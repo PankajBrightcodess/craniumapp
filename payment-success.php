@@ -45,8 +45,8 @@ $msg = "";
     $finaldata['razorpay_payment_id'] = $_POST['razorpay_payment_id']; 
     // print_r( $finaldata);
       if(isset($_POST['razorpay_payment_id'])){
-        echo '<pre>';
-         print_r($_SESSION['last_updated_id']);die;
+        // echo '<pre>';
+        //  print_r($_SESSION['last_updated_id']);die;
       $payment_details=json_encode($finaldata);
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
       $payment_status = 1;
