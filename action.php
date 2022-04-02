@@ -413,13 +413,13 @@ if(isset($_POST['eot_payment'])){
 
 	                	$run=mysqli_query($conn,$qrys);
 	                	$_SESSION['last_updated_id']=$lastid;
-			           // echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
-		            header('location:payment_2.php');
+			           echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
+		            // header('location:payment_2.php');
 		            $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 	                else{
-	                	// echo "<script type='text/javascript'>window.location.href = 'subscription_report.php';</script>";
-	      	      header('location:home.php');
+	                	echo "<script type='text/javascript'>window.location.href = 'subscription_report.php';</script>";
+	      	      // header('location:home.php');
 		             $_SESSION['msg']="Student Updated Successfully !!!";
 	                }
 
