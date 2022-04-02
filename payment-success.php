@@ -15,7 +15,7 @@ $msg = "";
     $sql = "SELECT * FROM $tables  WHERE `id` = '$ids'";
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($res);
-    print_r($row);die;
+    print_r($row);
     $length = 18;
     $merchant_order_id=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
     $merchant_trans_id= time();
