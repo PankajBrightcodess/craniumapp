@@ -75,7 +75,7 @@ $msg = "";
             $added_on = date('Y-m-d');
             $count = 1;
             $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
-            print_r($qrys3);
+            print_r($qrys3);die;
             $run3=mysqli_query($conn,$qrys3);
             $runs=mysqli_num_rows($run3);
              setcookie("count",$runs,time() + (86400 * 30),"/");
