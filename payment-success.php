@@ -77,6 +77,7 @@ $msg = "";
          }
       }
     }
+    unset($_SESSION['user_id']);
 ?>
 <!doctype html>
 <html lang="en">
