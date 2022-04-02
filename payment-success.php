@@ -9,8 +9,9 @@ $msg = "";
     if ($msg != "") {
         echo "<script> alert('$msg')</script>";
     }
-     
-    $sql = "SELECT * FROM ".$_SESSION['tables']." WHERE id = '$_SESSION[last_updated_id]'";
+     echo '<pre>';
+     print_r($_SESSION[last_updated_id]);die;
+    $sql = "SELECT * FROM '.$_SESSION['tables'].' WHERE `id` = '$_SESSION[last_updated_id]'";
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($res);
     $length = 18;
@@ -42,13 +43,12 @@ $msg = "";
     $finaldata['razorpay_payment_id'] = $_POST['razorpay_payment_id']; 
     print_r( $finaldata);
       if(isset($_POST['razorpay_payment_id'])){
-        echo '<pre>';
-     print_r($_SESSION['last_updated_id']);die;
+
       $payment_details=json_encode($finaldata);
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
       $payment_status = 1;
       $sessionid = $_SESSION['last_updated_id'];
-      print_r($sessionid);
+      print_r($sessionid);die;
       
       $table = $_SESSION['tables'];
       $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`=$_SESSION['last_updated_id']";
