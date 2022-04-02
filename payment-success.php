@@ -67,9 +67,9 @@ $msg = "";
          $start_date = date('Y-m-d');
          $expire_date = date("Y-m-d",strtotime("+60 day"));
          $sql1 = "INSERT INTO `myc_subscription`(`cust_id`,`start_date`,`expire_date`) VALUES ('$cust_id','$start_date','$expire_date')";
-         print_r($sql1);
+         // print_r($sql1);
          $qrys=mysqli_query($conn,$sql1);
-         print_r( $qrys);die;
+         // print_r( $qrys);die;
          if($qrys){
             $type = "EOT Crane";
             $added_on = date('Y-m-d');
@@ -82,7 +82,7 @@ $msg = "";
             if($runs==0){
               $qrys2 = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
               $sqls=mysqli_query($conn,$qrys2);
-              print_r($sqls);
+              print_r($sqls);die;
                 $qrys4 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
                 print_r($qrys4);
                $run4=mysqli_query($conn,$qrys4);
