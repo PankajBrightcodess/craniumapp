@@ -45,21 +45,14 @@ $msg = "";
     $finaldata['razorpay_payment_id'] = $_POST['razorpay_payment_id']; 
     // print_r( $finaldata);
       if(isset($_POST['razorpay_payment_id'])){
-        // echo '<pre>';
-        //  print_r($_SESSION['last_updated_id']);die;
       $payment_details=json_encode($finaldata);
       $razorpay_payment_id = $_POST['razorpay_payment_id']; 
       $payment_status = 1;
-      // $sessionid = $_SESSION['last_updated_id'];
-      // print_r($sessionid);die;
       
       $table = $_SESSION['tables'];
       // $ids = $_SESSION['last_updated_id'];
       $sql="UPDATE $table SET payment_status = '$payment_status',payment_id = '$razorpay_payment_id', payment_details = '$payment_details' WHERE `id`=$ids";
-      // print_r($sql);
       $rslt = $conn->query($sql);
-          
-      // print_r($rslt);die;
       if(!empty($_SESSION['payment_2'])){
         unset($_SESSION['payment_2']);
          $use_id =  json_decode($_COOKIE['Cookie'],true); 
@@ -76,7 +69,7 @@ $msg = "";
             $added_on = date('Y-m-d');
             $count = 1;
             $qrys3 = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
-            print_r($qrys3);die;
+            // print_r($qrys3);die;
             $run3=mysqli_query($conn,$qrys3);
             $runs=mysqli_num_rows($run3);
              setcookie("count",$runs,time() + (86400 * 30),"/");
