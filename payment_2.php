@@ -10,6 +10,9 @@ $res = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($res);
 // print_r($row);die;
 $_SESSION['payment_2'] = 'pay_2';
+$use_id =  json_decode($_COOKIE['Cookie'],true); 
+         $cust_id=$use_id['id'];
+$_SESSION['user_id'] =  $cust_id;
 
 $custid = $row['cust_id'];
 $sql1 = "SELECT * FROM myc_customer WHERE id = '$custid'";

@@ -9,6 +9,7 @@ $msg = "";
     if ($msg != "") {
         echo "<script> alert('$msg')</script>";
     }
+    $cust_id=$_SESSION['user_id'];
     $ids = $_SESSION['last_updated_id'];
     $tables = $_SESSION['tables'];
     echo '<pre>';
@@ -55,8 +56,8 @@ $msg = "";
       $rslt = $conn->query($sql);
       if(!empty($_SESSION['payment_2'])){
         unset($_SESSION['payment_2']);
-         $use_id =  json_decode($_COOKIE['Cookie'],true); 
-         $cust_id=$use_id['id'];
+         // $use_id =  json_decode($_COOKIE['Cookie'],true); 
+         // $cust_id=$use_id['id'];
          print_r($cust_id);
          $start_date = date('Y-m-d');
          $expire_date = date("Y-m-d",strtotime("+60 day"));
