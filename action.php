@@ -350,17 +350,18 @@ if(isset($_POST['eotcrane_text'])){
 		$sql=mysqli_query($conn,$query);
 		$_SESSION['eotcrane_lasttext_id']=$conn->insert_id;
 		if($sql){
-		     $use_id =  json_decode($_COOKIE['Cookie'],true); 
-                        $cust_id=$use_id['id'];
-				$type = "EOT Crane";
-				$added_on = date('Y-m-d');
-				$count = 1;
-				$qrys = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES ('$cust_id','$type','$count','$added_on')";
-			if($sqls){
-				echo "<script type='text/javascript'>window.location.href = 'eot_preview.php';</script>";
-		            // header("location:eot_preview.php");
-		            $_SESSION['msg']="Successfully Added!!!";	
-			}	
+			echo "<script type='text/javascript'>window.location.href = 'eot_preview.php';</script>";
+		   $_SESSION['msg']="Successfully Added!!!";	
+		     //     $use_id =  json_decode($_COOKIE['Cookie'],true); 
+          //                      $cust_id=$use_id['id'];
+		   // 	$type = "EOT Crane";
+		  // 	$added_on = date('Y-m-d');
+			// 	$count = 1;
+		  // 	$qrys = "INSERT INTO `myc_subscription_count`(`user_id`,`type`,`count`,`added_on`) VALUES     ('$cust_id','$type','$count','$added_on')";
+		 // if($sqls){
+		// 	echo "<script type='text/javascript'>window.location.href = 'eot_preview.php';</script>";
+		 //            $_SESSION['msg']="Successfully Added!!!";	
+			// }	
 		}
 		else{
 			$_SESSION['msg']="Not added result !!!";
@@ -383,50 +384,45 @@ if(isset($_POST['eot_payment'])){
 	  $_SESSION['tables'] = 'myc_eotrequestform';
 	if($run){
 		// ''''''''''''subscription check''''''''''''''''
-		$use_id =  json_decode($_COOKIE['Cookie'],true); 
-            $cust_id=$use_id['id'];
-            $exp_date = date('Y-m-d');
-            $qry = "SELECT * FROM `myc_subscription` WHERE `cust_id`='$cust_id' AND `expire_date`>'$exp_date'";
+		   $use_id =  json_decode($_COOKIE['Cookie'],true); 
+         $cust_id=$use_id['id'];
+         $exp_date = date('Y-m-d');
+         $qry = "SELECT * FROM `myc_subscription` WHERE `cust_id`='$cust_id' AND `expire_date`>'$exp_date'";
 	      $run=mysqli_query($conn,$qry);
 	      $data=mysqli_fetch_assoc($run);
 
 	      if(empty($data)){
-	      	$_SESSION['last_updated_id']=$lastid;
-			echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
-
-		      header('location:payment_2.php');
-		      $_SESSION['msg']="Student Updated Successfully !!!";
+	      	  $_SESSION['last_updated_id']=$lastid;
+				  echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
+		        $_SESSION['msg']="Student Updated Successfully !!!";
 	      }
 	      else{
-	      	// print_r($data);die;
-	      	   $start_date = $data['start_date'];
-	      	   $expire_date = $data['expire_date'];
-	      	   $qry = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id' AND `added_on` BETWEEN  '$start_date' AND '$expire_date'";
-	              $run=mysqli_query($conn,$qry);
-	                $data=mysqli_num_rows($run);
-	                // print_r($data);die;
-	                setcookie("count",$data,time() + (86400 * 30),"/");
-	                $count =$_COOKIE['count'];
-	                if($count>=5){
-	                	 unset($_COOKIE["count"]);
-	                	setcookie("count",$data,time() - (86400 * 90),"/");
-	                	$qrys = "DELETE FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
-
-	                	$run=mysqli_query($conn,$qrys);
-	                	$_SESSION['last_updated_id']=$lastid;
-			           echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
-		            // header('location:payment_2.php');
-		            $_SESSION['msg']="Student Updated Successfully !!!";
-	                }
-	                else{
-	                	echo "<script type='text/javascript'>window.location.href = 'subscription_report.php';</script>";
-	      	      // header('location:home.php');
-		             $_SESSION['msg']="Student Updated Successfully !!!";
-	                }
-
-
-			
+	            echo "<script type='text/javascript'>window.location.href = 'subscription_report.php';</script>";
+		         $_SESSION['msg']="Student Updated Successfully !!!";
 	      }
+	      // else{
+	      // 	   $start_date = $data['start_date'];
+	      // 	   $expire_date = $data['expire_date'];
+	      // 	   $qry = "SELECT `id` FROM `myc_subscription_count` WHERE `user_id`='$cust_id' AND `added_on` BETWEEN  '$start_date' AND '$expire_date'";
+	      //         $run=mysqli_query($conn,$qry);
+	      //           $data=mysqli_num_rows($run);
+	      //           setcookie("count",$data,time() + (86400 * 30),"/");
+	      //           $count =$_COOKIE['count'];
+	      //           if($count>=5){
+	      //           	 unset($_COOKIE["count"]);
+	      //           	setcookie("count",$data,time() - (86400 * 90),"/");
+	      //           	$qrys = "DELETE FROM `myc_subscription_count` WHERE `user_id`='$cust_id'";
+
+	      //           	$run=mysqli_query($conn,$qrys);
+	      //           	$_SESSION['last_updated_id']=$lastid;
+			    //        echo "<script type='text/javascript'>window.location.href = 'payment_2.php';</script>";
+		     //        $_SESSION['msg']="Student Updated Successfully !!!";
+	      //           }
+	      //           else{
+	      //           	echo "<script type='text/javascript'>window.location.href = 'subscription_report.php';</script>";
+		     //           $_SESSION['msg']="Student Updated Successfully !!!";
+	      //           }
+	      // }
 			
 	}
 	else{
