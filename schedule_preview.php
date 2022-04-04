@@ -39,7 +39,7 @@
       <div class="container marg">
         <!-- Profile Wrapper-->
         <div class="profile-wrapper-area">
-         <!-- <form method="post" action="action.php">   -->
+         <form method="post" action="action.php">  
           <!-- User Information-->
           <div class="card user-info-card">
             <div class="card-body p-4 d-flex align-items-center">
@@ -175,12 +175,14 @@
                 </tr>
                 </thead>
               </table>
+                      <input type="hidden" name="lastid" value="<?php echo $data['id']?>">
+                      <input type="hidden" name="amount" value="<?php echo $data['total_val']?>">
                <!-- <input type="submit" name="submit_shadule" class="btn btn-sm btn-success" value="SUBMIT"> -->
               <!-- <a href="" class="btn btn-sm btn-success" style="text-align: center;"></a> -->
-              <a href="" class="btn btn-sm btn-warning" style="text-align: center; float: right;">PROCEED FOR PAYMENT</a>
+              <input type="submit" name="shadule_payment" class="btn btn-sm btn-warning" value="PROCEED FOR PAYMENT">
             </div>
           </div>
-          <!-- </form> -->
+          </form>
         </div>
       </div>
     </div>

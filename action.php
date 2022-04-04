@@ -1492,11 +1492,12 @@ if(isset($_POST['submit_shadule'])){
 	$qty= $_POST['qty'];
 	$days= $_POST['days'];
 	$total_val= $_POST['total_val'];
+	$amount = $_POST['total_val'];
 	$use_id =  json_decode($_COOKIE['Cookie'],true); 
       $id=$use_id['id'];
       $added_on = date('Y-m-d');
       // print_r($_POST);die;
-      $query="INSERT INTO `myc_shadule_online`(`comp_name`,`address`,`country`,`state`,`dist`,`details_of_item`,`qty`,`days`,`total_val`,`user_id`,`added_on`) VALUES ('$comp_name','$address','$country','$state','$dist','$details_of_item','$qty','$days','$total_val','$id','$added_on')";
+      $query="INSERT INTO `myc_shadule_online`(`comp_name`,`address`,`country`,`state`,`dist`,`details_of_item`,`qty`,`days`,`total_val`,`user_id`,`amount`,`added_on`) VALUES ('$comp_name','$address','$country','$state','$dist','$details_of_item','$qty','$days','$total_val','$id','$amount','$added_on')";
 		$sql=mysqli_query($conn,$query);
 		$_SESSION['last_id']=$conn->insert_id; 
 		// print_r($_SESSION['last_id']);die;
@@ -1512,6 +1513,33 @@ if(isset($_POST['submit_shadule'])){
 		}
       
 }
+if(isset($_POST['shadule_payment'])){
+	// echo '<pre>';
+	// print_r($_POST);die;
+	$lastid = $_SESSION['last_id'];
+	$amt =  ($_POST['amount']);
+	$amount = $amt;
+	$length = 15;
+	 $order_no=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
+	 $added_on = date('Y-m-d');
+	  $query="UPDATE `myc_shadule_online` SET `amount`='$amount',`order_no`='$order_no',`added_on`='$added_on'  WHERE `id`='$lastid'";
+	  // print_r($query);die;
+	  $run=mysqli_query($conn,$query);
+	  $_SESSION['tables'] = myc_shadule_online;
+	if($run){
+		$_SESSION['last_updated_id']=$lastid;
+	      	echo "<script type='text/javascript'>window.location.href='payment_3.php';</script>";
+		      $_SESSION['msg']="Shadule Updated Successfully !!!";
+	     
+	     
+	}
+	else{
+		$_SESSION['msg']="Shadule Not Updated!!!";
+		echo "<script type='text/javascript'>window.location.href='schedule_preview.php';</script>";
+		// header("location:$_SERVER[HTTP_REFERER]");
+	}
+}
+
 
 if(isset($_POST['electric_chain_submit'])){
 	
