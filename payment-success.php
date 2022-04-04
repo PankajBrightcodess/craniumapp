@@ -15,6 +15,7 @@ $msg = "";
     $sql = "SELECT * FROM $tables  WHERE `id` = $ids";
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($res);
+    // print_r($row['comp_name']);die;
     $length = 18;
     $merchant_order_id=substr(str_shuffle(str_repeat($x='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz', ceil($length/strlen($x)) )),1,$length);
     $merchant_trans_id= time();
@@ -23,9 +24,11 @@ $msg = "";
     $merchant_furl_id = 'payment-success.php';
     if(!empty($row['comp_name'])){
       $card_holder_name_id =$row['comp_name'];
+      $finaldata['card_holder_name_id'] = $card_holder_name_id;
     }
     if(!empty($row['company_name'])){
       $card_holder_name_id =$row['company_name'];
+      $finaldata['card_holder_name_id'] = $card_holder_name_id;
     }
     $someprice = $row['amount'];  
     $paisaprice = $someprice*100;
@@ -36,7 +39,6 @@ $msg = "";
     $finaldata['merchant_product_info_id'] = $merchant_product_info_id;
     $finaldata['merchant_surl_id'] = $merchant_surl_id;
     $finaldata['merchant_furl_id'] = $merchant_furl_id;
-    $finaldata['card_holder_name_id'] = $card_holder_name_id;
     $finaldata['someprice'] = $someprice;
     $finaldata['total'] = $total;
     $finaldata['amount'] = $amount;
@@ -51,7 +53,6 @@ $msg = "";
 
       $rslt = $conn->query($sql);
       if(!empty($_SESSION['payment_2'])){
-        unset($_SESSION['payment_2']);
          $start_date = date('Y-m-d');
          $expire_date = date("Y-m-d",strtotime("+60 day"));
          $sql1 = "INSERT INTO `myc_subscription`(`cust_id`,`start_date`,`expire_date`) VALUES ('$cust_id','$start_date','$expire_date')";
@@ -96,7 +97,17 @@ $msg = "";
               <img src="https://img.icons8.com/ios-filled/50/000000/cloud-checked.png"/>
               <h3>Payment Successfull !!!</h3>
               <p style="color:green;">Your Payment has been Successfully Recieved !!!</p>
-              <a href="subscription_report.php" class="btn btn-success mt-2">Done</a>
+              <?php 
+                if(!empty($_SESSION['payment_2'])){
+                  unset($_SESSION['payment_2']);
+                  ?><a href="subscription_report.php" class="btn btn-success mt-2">Done</a><?php
+                }
+                else{
+                  ?><a href="home.php" class="btn btn-success mt-2">Done</a><?php
+                }
+
+              ?>
+              
             </div>
           </div>
         </div>
