@@ -345,7 +345,7 @@
              $('#cgst').hide();
              $('#sgst').hide();
              $('#igst').show();
-             var total_amounts = parseFloat(basic_total) +(parseFloat(basic_18s)*2);
+             var total_amounts = parseFloat(basic_total) +(parseFloat(basic_18s));
              var total_amount=  parseFloat(total_amounts).toFixed(2);
              $('#total_amounts').html(total_amount);
              $('#total_amounts_val').val(total_amount);
@@ -391,7 +391,7 @@
              $('#cgst').hide();
              $('#sgst').hide();
              $('#igst').show();
-             var total_amounts = parseFloat(basic_total) +(parseFloat(basic_18s)*2);
+             var total_amounts = parseFloat(basic_total) +(parseFloat(basic_18s));
              var total_amount=  parseFloat(total_amounts).toFixed(2);
              $('#total_amounts').html(total_amount);
              $('#total_amounts_val').val(total_amount);
@@ -437,7 +437,7 @@
              $('#cgst').hide();
              $('#sgst').hide();
              $('#igst').show();
-             var total_amounts = parseFloat(basic_total) +(parseFloat(basic_18s)*2);
+             var total_amounts = parseFloat(basic_total) +(parseFloat(basic_18s));
              var total_amount=  parseFloat(total_amounts).toFixed(2);
              $('#total_amounts').html(total_amount);
              $('#total_amounts_val').val(total_amount);
@@ -485,7 +485,7 @@
              $('#cgst').hide();
              $('#sgst').hide();
              $('#igst').show();
-             var total_amounts = parseFloat(basic_total) +(parseFloat(basic_18s)*2);
+             var total_amounts = parseFloat(basic_total) +(parseFloat(basic_18s));
              var total_amount=  parseFloat(total_amounts).toFixed(2);
              $('#total_amounts').html(total_amount);
              $('#total_amounts_val').val(total_amount);
@@ -530,7 +530,7 @@
              $('#cgst').hide();
              $('#sgst').hide();
              $('#igst').show();
-             var total_amounts = parseFloat(basic_total) +(parseFloat(basic_18s)*2);
+             var total_amounts = parseFloat(basic_total) +(parseFloat(basic_18s));
              var total_amount=  parseFloat(total_amounts).toFixed(2);
              $('#total_amounts').html(total_amount);
              $('#total_amounts_val').val(total_amount);
