@@ -42,6 +42,20 @@
       </div>
     </div>
 <form action="action.php" method="POST" enctype="multipart/form-data">
+  <div class="page-content-wrapper">
+      <div class="container">
+        <div class="profile-wrapper-area py-5" style="padding-bottom: 0rem!important">
+          <div class="card user-info-card">
+            <div class="card-body p-4 d-flex align-items-center">
+             
+              <div class="user-info">
+                <h5 class="mb-0 text-center">Just Subscribe @ INR 413 including GST for 5 Quotation.</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="page-content-wrapper">
       <div class="container">
         <!-- Profile Wrapper-->
