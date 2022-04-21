@@ -48,14 +48,14 @@
               </div>
             </div>
              <!-- Single Hero Slide-->
-            <!-- <div class="single-hero-slide" style="background-image: url('img/bg-img/ban4.jpg')">
+          <div class="single-hero-slide" style="background-image: url('img/bg-img/01.jpg')">
               <div class="slide-content h-100 d-flex align-items-center">
                 <div class="slide-text">
-                  <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-duration="1000ms">DOUBLE GIRDER GANTRY/GOLIATH CRANE.</h4>
+                  <h4 class="text-white mb-0" data-animation="fadeInUp" data-delay="100ms" data-duration="1000ms">PILLER MOUNTED JIB CRANE.</h4>
                   <p class="text-white" data-animation="fadeInUp" data-delay="400ms" data-duration="1000ms">2 years warranty</p><a class="btn btn-danger btn-sm" href="#" data-animation="fadeInUp" data-delay="800ms" data-duration="1000ms">Buy Now</a>
                 </div>
               </div>
-            </div> -->
+            </div> 
              <!-- Single Hero Slide-->
             <!-- <div class="single-hero-slide" style="background-image: url('img/bg-img/ban5.jpg')">
               <div class="slide-content h-100 d-flex align-items-center">

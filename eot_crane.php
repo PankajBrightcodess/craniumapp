@@ -42,7 +42,7 @@
       </div>
     </div>
     <form action="action.php" method="POST" enctype="multipart/form-data">
- <div class="page-content-wrapper">
+    <div class="page-content-wrapper">
       <div class="container">
         <div class="profile-wrapper-area py-5" style="padding-bottom: 0rem!important">
           <div class="card user-info-card">
