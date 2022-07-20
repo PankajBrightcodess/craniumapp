@@ -6,11 +6,8 @@ elseif(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='localhost:8080'){
 	$conn=new mysqli("localhost","root","","db_mycranium");
 }
 else{
-	$conn=new MySQLi("localhost","bssrauoj_craniumforall ","craniumforall@123#"," bssrauoj_craniumforall ");
+	$conn=new MySQLi("localhost","bssrauoj_craniumforall","craniumforall@123#"," bssrauoj_craniumforall");
 }
-// else{
-// 	$conn=new MySQLi("localhost","softwarebss_crenium","Crenium@2021"," tha");
-// }
 if($conn->connect_errno){
 	echo "connection failed";
 }
