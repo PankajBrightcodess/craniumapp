@@ -2,9 +2,9 @@
 if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='localhost'){
 	$conn=new mysqli("localhost","root","","db_mycranium");
 }
-elseif(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='localhost:8080'){
-	$conn=new mysqli("localhost","root","","db_mycranium");
-}
+// elseif(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='localhost:8080'){
+// 	$conn=new mysqli("localhost","root","","db_mycranium");
+// }
 else{
 	$conn=new MySQLi("119.18.54.69","bssrauoj_craniumapp","Ic@nsee1"," bssrauoj_craniumapp");
 }
